@@ -1,7 +1,8 @@
 
-name: Flutter Tests
+     name: Flutter Tests
 
 on:
+  workflow_dispatch:
   push:
     branches: [ "semana-4" ]
   pull_request:
@@ -25,5 +26,3 @@ jobs:
 
       - name: Executar testes
         run: flutter test
-
-      
