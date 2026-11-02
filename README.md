@@ -6,10 +6,10 @@ Repositório acadêmico de atividades da disciplina **Desenvolvimento Mobile I**
 
 | Semana | Conteúdo | Onde encontrar |
 | --- | --- | --- |
-| 1 | Materiais e atividades iniciais | [Branch semana-1](../../tree/semana-1) |
-| 4 | Estruturas de dados em Dart | [Branch semana-4](../../tree/semana-4) |
-| 5 | Orientação a objetos — Atividade 8 | [Branch semana5](../../tree/semana5) |
-| 6 | Programação assíncrona — Atividade 9 | [Branch semana6](../../tree/semana6) |
+| 1 | Materiais e atividades iniciais | [Branch semana-1](https://github.com/antoniacosta25/FirebaseApp/tree/semana-1) |
+| 4 | Estruturas de dados em Dart | [Branch semana-4](https://github.com/antoniacosta25/FirebaseApp/tree/semana-4) |
+| 5 | Orientação a objetos — Atividade 8 | [Branch semana5](https://github.com/antoniacosta25/FirebaseApp/tree/semana5) |
+| 6 | Programação assíncrona — Atividade 9 | [Branch semana6](https://github.com/antoniacosta25/FirebaseApp/tree/semana6) |
 
 A branch `semama5` é uma branch anterior, preservada no repositório; para a atividade da semana 5, consulte `semana5`. O conteúdo de cada semana fica na respectiva branch, não necessariamente nesta página inicial.
 
