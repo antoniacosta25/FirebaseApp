@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Atividades de Desenvolvimento Mobile I da UESB, organizadas por plataforma.">
-  <title>Desenvolvimento Mobile I | Atividades</title>
+  <meta name="description" content="Portal completo de Desenvolvimento Mobile I da UESB, organizado por semana, atividades avaliativas, roteiros e branches no GitHub.">
+  <title>Desenvolvimento Mobile I | Portal Completo &amp; Atividades (UESB 2026.2)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet">
@@ -12,56 +12,86 @@
     :root { color-scheme: light; --ink:#432338; --muted:#72596a; --paper:#fff7f8; --accent:#a43165; --line:#e8ccd8; }
     * { box-sizing:border-box; }
     body { margin:0; font-family:"Playfair Display",Georgia,serif; color:var(--ink); background:radial-gradient(ellipse at 92% 0%,#f5cfdd,transparent 37rem),radial-gradient(ellipse at 0% 55%,#f9e3eb,transparent 35rem),var(--paper); line-height:1.6; }
-    main { width:min(1040px,calc(100% - 40px)); margin:auto; }
-    header { padding:76px 0 48px; border-bottom:1px solid var(--line); }
+    main { width:min(1120px,calc(100% - 40px)); margin:auto; }
+    header { padding:64px 0 42px; border-bottom:1px solid var(--line); }
     .eyebrow,.number,.tag { font:700 .75rem/1.4 "DM Sans",sans-serif; letter-spacing:.13em; text-transform:uppercase; }
-    .eyebrow { color:var(--accent); } h1 { max-width:800px; font-size:clamp(2.8rem,8vw,6rem); line-height:1; letter-spacing:-.055em; margin:18px 0 24px; }
-    .intro { max-width:650px; font-size:1.2rem; color:var(--muted); }
-    h2 { font-size:2rem; margin:0; letter-spacing:-.03em; } section { padding:52px 0; border-bottom:1px solid var(--line); }
+    .eyebrow { color:var(--accent); } h1 { max-width:850px; font-size:clamp(2.6rem,7vw,5.4rem); line-height:1; letter-spacing:-.055em; margin:16px 0 20px; }
+    .intro { max-width:720px; font-size:1.15rem; color:var(--muted); }
+    .nav-pills { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; font-family:"DM Sans",sans-serif; }
+    .nav-pills a { padding:9px 15px; border-radius:999px; background:#fff; border:1px solid var(--line); font-size:.85rem; font-weight:700; text-decoration:none; color:var(--ink); box-shadow:0 4px 14px rgba(108,37,70,.05); }
+    .nav-pills a.primary { background:var(--accent); color:#fff; border-color:var(--accent); }
+    h2 { font-size:2rem; margin:0; letter-spacing:-.03em; } section { padding:46px 0; border-bottom:1px solid var(--line); }
     .section-header { display:flex; justify-content:space-between; gap:20px; align-items:baseline; margin-bottom:24px; }
     .tag { color:var(--muted); } .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-    article { background:rgba(255,255,255,.75); border:1px solid var(--line); border-radius:18px; padding:26px; box-shadow:0 12px 35px rgba(108,37,70,.04); display:flex; flex-direction:column; min-height:215px; }
-    .number { color:var(--accent); } h3 { font-size:1.35rem; line-height:1.2; margin:14px 0 8px; } article p { color:var(--muted); margin:0 0 22px; } a { color:#8f2859; text-underline-offset:4px; } article a { margin-top:auto; font-family:"DM Sans",sans-serif; font-weight:700; }
-    .notice { font-family:"DM Sans",sans-serif; font-size:.9rem; color:var(--muted); max-width:740px; } footer { padding:28px 0 50px; font-family:"DM Sans",sans-serif; font-size:.85rem; color:var(--muted); }
+    article { background:rgba(255,255,255,.82); border:1px solid var(--line); border-radius:18px; padding:24px; box-shadow:0 12px 35px rgba(108,37,70,.04); display:flex; flex-direction:column; min-height:215px; }
+    .number { color:var(--accent); } h3 { font-size:1.3rem; line-height:1.25; margin:12px 0 8px; } article p { color:var(--muted); margin:0 0 18px; font-family:"DM Sans",sans-serif; font-size:.93rem; }
+    a { color:#8f2859; text-underline-offset:4px; } article a { margin-top:auto; font-family:"DM Sans",sans-serif; font-weight:700; font-size:.9rem; }
+    .notice { font-family:"DM Sans",sans-serif; font-size:.9rem; color:var(--muted); max-width:820px; margin-top:18px; }
+    footer { padding:28px 0 50px; font-family:"DM Sans",sans-serif; font-size:.85rem; color:var(--muted); }
     a:focus-visible { outline:3px solid var(--accent); outline-offset:4px; }
-    @media(max-width:700px){ header{padding-top:48px} .grid{grid-template-columns:1fr} article{min-height:0} .section-header{display:block} }
+    @media(max-width:760px){ header{padding-top:42px} .grid{grid-template-columns:1fr} article{min-height:0} .section-header{display:block} }
   </style>
 </head>
 <body>
 <main>
   <header>
-    <span class="eyebrow">UESB / Análise e Desenvolvimento de Sistemas</span>
+    <span class="eyebrow">UESB · Licenciatura em Computação / ADS · 2026.2 · Prof. Dr. Edilson Luiz do Nascimento</span>
     <h1>Desenvolvimento<br>Mobile I<span style="color:var(--accent)">.</span></h1>
-    <p class="intro">Aprender, criar e transformar ideias em experiências para dispositivos móveis. Um espaço para reunir os estudos e projetos da disciplina.</p>
+    <p class="intro">Portal acadêmico de <strong>Antônia Graciela Silva Costa Silva</strong> (<code>antoniacosta25</code>) reunindo todas as 6 semanas, os 4 roteiros práticos em Dart/Flutter, as 10 atividades avaliativas, o glossário completo e a revisão dos questionários.</p>
+    <div class="nav-pills">
+      <a class="primary" href="docs/portal-moodle-html/index.html">🚀 Abrir Portal HTML Completo (10 Páginas)</a>
+      <a href="docs/portal-moodle-html/semana-1.html">Semana 1</a>
+      <a href="docs/portal-moodle-html/semana-2.html">Semana 2</a>
+      <a href="docs/portal-moodle-html/semana-3.html">Semana 3</a>
+      <a href="docs/portal-moodle-html/semana-4.html">Semana 4</a>
+      <a href="docs/portal-moodle-html/semana-5-atividade-8.html">Semana 5 (OO)</a>
+      <a href="docs/portal-moodle-html/semana-6-atividade-9-10.html">Semana 6 (Async)</a>
+      <a href="docs/portal-moodle-html/revisao-questionarios.html">31 Questões Revisadas</a>
+      <a href="docs/portal-moodle-html/glossario-mobile.html">Glossário A–Z</a>
+    </div>
   </header>
-  <section aria-labelledby="disciplina">
-    <div class="section-header"><h2 id="disciplina">Sobre a disciplina</h2><span class="tag">Aprendizado em movimento</span></div>
-    <p class="intro">Desenvolvimento Mobile I apresenta os fundamentos da criação de soluções para dispositivos móveis, das plataformas e interfaces aos primeiros programas e estruturas de dados. As atividades conectam teoria e prática ao longo das semanas.</p>
-  </section>
-  <section aria-labelledby="dart">
-    <div class="section-header"><h2 id="dart">Conhecendo Dart</h2><span class="tag">Linguagem &amp; prática</span></div>
-    <p class="intro">Dart é uma linguagem de programação utilizada no desenvolvimento de aplicações, inclusive com o Flutter. Na disciplina, ela aparece em exercícios de lógica, coleções, orientação a objetos e programação assíncrona com <code>Future</code> e <code>Stream</code>.</p>
-  </section>
-  <section aria-labelledby="plataformas">
-    <div class="section-header"><h2 id="plataformas">Atividades em plataformas</h2><span class="tag">Moodle e ferramentas externas</span></div>
+
+  <section aria-labelledby="semanas">
+    <div class="section-header"><h2 id="semanas">Organização por Semana (1 a 6)</h2><span class="tag">Conteúdos, Roteiros e Apostilas em HTML</span></div>
     <div class="grid">
-      <article><span class="number">Atividade 01</span><h3>Tendências e inovações</h3><p>Atividade interativa sobre desenvolvimento mobile.</p><a href="https://moodle4.uesb.br/mod/hvp/view.php?id=29914">Acessar atividade →</a></article>
-      <article><span class="number">Atividade 02</span><h3>Tendências e inovações</h3><p>Questionário da primeira semana.</p><a href="https://moodle4.uesb.br/mod/quiz/view.php?id=29915">Acessar questionário →</a></article>
-      <article><span class="number">Atividade 03</span><h3>Vocabulário mobile</h3><p>Palavras cruzadas com termos da área.</p><a href="https://moodle4.uesb.br/mod/lti/view.php?id=30639">Acessar atividade →</a></article>
-      <article><span class="number">Atividade 05</span><h3>Fundamentos de Dart</h3><p>Questionário sobre os capítulos II e III.</p><a href="https://moodle4.uesb.br/mod/quiz/view.php?id=30524">Acessar questionário →</a></article>
-      <article><span class="number">Atividade 10</span><h3>Programação assíncrona</h3><p>Questionário sobre conceitos assíncronos.</p><a href="https://moodle4.uesb.br/mod/quiz/view.php?id=31597">Acessar questionário →</a></article>
+      <article><span class="number">Semana 01</span><h3>Introdução à Computação Móvel</h3><p>Arquitetura e plataformas, ferramentas Tradicionais/Low-Code/No-Code, UX/UI, IA, IoT, 5G e Glossário Mobile.</p><a href="docs/portal-moodle-html/semana-1.html">Estudar Semana 1 →</a></article>
+      <article><span class="number">Semana 02</span><h3>Ambiente &amp; Capítulo 1 (Hello, Dart!)</h3><p>Introdução ao ambiente de programação, evolução do Dart (JIT/AOT) e configuração inicial no GitHub.</p><a href="docs/portal-moodle-html/semana-2.html">Estudar Semana 2 →</a></article>
+      <article><span class="number">Semana 03</span><h3>GitHub Codespaces &amp; Caps. II e III</h3><p>Configuração do Container Flutter no Codespaces (branch <code>semana1</code>), tipos, null safety, operadores e controle.</p><a href="docs/portal-moodle-html/semana-3.html">Estudar Semana 3 →</a></article>
+      <article><span class="number">Semana 04</span><h3>Estruturas de Dados em Dart (Cap. IX)</h3><p>Coleções tipadas <code>List&lt;int&gt;</code> e <code>Map&lt;String, List&lt;double&gt;&gt;</code>, ordenação, filtragem e cálculo de médias.</p><a href="docs/portal-moodle-html/semana-4.html">Estudar Semana 4 →</a></article>
+      <article><span class="number">Semana 05</span><h3>Orientação a Objetos em Dart (Cap. VIII)</h3><p>Classes abstratas, encapsulamento, <code>mixin Ano</code>, herança e polimorfismo (<code>Pessoa</code>, <code>Aluno</code>, <code>Professor</code>, <code>Turma</code>, <code>Historico</code>).</p><a href="docs/portal-moodle-html/semana-5-atividade-8.html">Estudar Semana 5 →</a></article>
+      <article><span class="number">Semana 06</span><h3>Programação Assíncrona (Cap. X)</h3><p>Event loop, Isolates, <code>Future&lt;T&gt;</code>, <code>async</code>/<code>await</code>, <code>Stream&lt;T&gt;</code>, geradores <code>async*</code>/<code>yield</code> e tratamento de erros.</p><a href="docs/portal-moodle-html/semana-6-atividade-9-10.html">Estudar Semana 6 →</a></article>
     </div>
   </section>
+
   <section aria-labelledby="projetos">
-    <div class="section-header"><h2 id="projetos">Projetos em código</h2><span class="tag">GitHub / Dart</span></div>
+    <div class="section-header"><h2 id="projetos">Entregas de Código no GitHub</h2><span class="tag">Branches Auditadas · Testes Automatizados</span></div>
     <div class="grid">
-      <article><span class="number">Atividade 08</span><h3>Orientação a objetos</h3><p>Prática da semana 5 em Dart.</p><a href="https://github.com/antoniacosta25/FirebaseApp/tree/semana5">Ver código →</a></article>
-      <article><span class="number">Atividade 09</span><h3>Programação assíncrona</h3><p>Prática da semana 6 em Dart.</p><a href="https://github.com/antoniacosta25/FirebaseApp/tree/semana6">Ver código →</a></article>
+      <article><span class="number">Atividade 04 &amp; 06 · Semanas 2–3</span><h3>Ambiente Codespaces &amp; Flutter</h3><p>Configuração <code>.devcontainer</code>, <code>.vscode/launch.json</code> e estrutura Flutter (branches <code>semana1</code> e <code>semana-1</code>).</p><a href="https://github.com/antoniacosta25/FirebaseApp/tree/semana1">Ver branch semana1 →</a></article>
+      <article><span class="number">Atividade 07 · Semana 4</span><h3>Estruturas de Dados (List &amp; Map)</h3><p>Testes unitários de listas, mapas e cálculo de médias comentados (branches <code>semana-4</code> e <code>semana4</code> — Avaliada: 10,00/10,00).</p><a href="https://github.com/antoniacosta25/FirebaseApp/tree/semana-4">Ver branch semana-4 →</a></article>
+      <article><span class="number">Atividade 08 · Semana 5</span><h3>Orientação a Objetos em Dart</h3><p>Implementação completa em <code>test/obj_test.dart</code> com 11 testes unitários passando na branch <code>semana5</code>.</p><a href="https://github.com/antoniacosta25/FirebaseApp/tree/semana5">Ver branch semana5 →</a></article>
+      <article><span class="number">Atividade 09 · Semana 6</span><h3>Programação Assíncrona</h3><p>Implementação em <code>lib/assincrono.dart</code> e <code>test/async_test.dart</code> com 6 testes unitários passando na branch <code>semana6</code>.</p><a href="https://github.com/antoniacosta25/FirebaseApp/tree/semana6">Ver branch semana6 →</a></article>
+      <article><span class="number">Caderno de Questões</span><h3>31 Questões Revisadas (A2, A5, A10)</h3><p>Enunciados completos, alternativas e feedbacks oficiais dos 3 questionários respondidos no Moodle.</p><a href="docs/portal-moodle-html/revisao-questionarios.html">Abrir revisão completa →</a></article>
+      <article><span class="number">Referência Terminológica</span><h3>Glossário Mobile A–Z</h3><p>Todos os conceitos do Glossário de Desenvolvimento Mobile extraídos do Moodle UESB.</p><a href="docs/portal-moodle-html/glossario-mobile.html">Consultar glossário →</a></article>
     </div>
-    <p class="notice">Os links do Moodle podem exigir autenticação. Esta página organiza os acessos e não substitui a entrega ou a avaliação das atividades.</p>
   </section>
-  <footer>Desenvolvimento Mobile I · UESB · 2026.2</footer>
+
+  <section aria-labelledby="plataformas">
+    <div class="section-header"><h2 id="plataformas">Atividades Avaliativas no Moodle UESB</h2><span class="tag">Todas as 10 Atividades (Curso ID 1094)</span></div>
+    <div class="grid">
+      <article><span class="number">Atividade 01 · Semana 1</span><h3>Tendências e inovações (H5P)</h3><p>Atividade interativa H5P sobre inovações mobile (Peso 2 · Concluída e avaliada no Moodle).</p><a href="https://moodle4.uesb.br/mod/hvp/view.php?id=29914">Acessar no Moodle →</a></article>
+      <article><span class="number">Atividade 02 · Semana 1</span><h3>Questionário: Tendências</h3><p>Questionário da Semana 1 (Peso 1 · Concluído em 27/08/2026 com nota máxima 10,00/10,00).</p><a href="https://moodle4.uesb.br/mod/quiz/view.php?id=29915">Acessar no Moodle →</a></article>
+      <article><span class="number">Atividade 03 · Semana 1</span><h3>Palavras Cruzadas: Vocabulário</h3><p>Atividade LTI de vocabulário mobile (Peso 3 · Concluída e avaliada com 8,00/10,00).</p><a href="https://moodle4.uesb.br/mod/lti/view.php?id=30639">Acessar no Moodle →</a></article>
+      <article><span class="number">Atividade 04 · Semana 2</span><h3>Envio de Link (Não Pontuada)</h3><p>Tarefa inicial da Semana 2 marcada como atividade não pontuada no Moodle.</p><a href="https://moodle4.uesb.br/mod/assign/view.php?id=31596">Acessar no Moodle →</a></article>
+      <article><span class="number">Atividade 05 · Semana 3</span><h3>Questionário: Caps. II e III</h3><p>Questionário de 20 questões sobre fundamentos de Dart (Peso 5 · Concluído em 10/09/2026 com 8,50/10,00).</p><a href="https://moodle4.uesb.br/mod/quiz/view.php?id=30524">Acessar no Moodle →</a></article>
+      <article><span class="number">Atividade 06 · Semana 3</span><h3>Entrega do Link (Branch semana1)</h3><p>Entrega do roteiro Codespaces (Peso 5 · PDF enviado em 11/09/2026 apontando para <code>tree/semana1</code>).</p><a href="https://moodle4.uesb.br/mod/assign/view.php?id=30525">Acessar no Moodle →</a></article>
+      <article><span class="number">Atividade 07 · Semana 4</span><h3>Entrega do Link (Estrutura de Dados)</h3><p>Entrega da Semana 4 (Peso 10 · Avaliada com nota máxima 10,00/10,00 em 18/10/2026).</p><a href="https://moodle4.uesb.br/mod/assign/view.php?id=30735">Acessar no Moodle →</a></article>
+      <article><span class="number">Atividade 08 · Semana 5</span><h3>Entrega do Link (Orientação a Objetos)</h3><p>Entrega da Semana 5 (Peso 5 · Código pronto e validado na branch <code>semana5</code>).</p><a href="https://moodle4.uesb.br/mod/assign/view.php?id=31001">Acessar no Moodle →</a></article>
+      <article><span class="number">Atividade 09 · Semana 6</span><h3>Entrega do Link (Prog. Assíncrona)</h3><p>Entrega da Semana 6 (Peso 10 · Código pronto e validado na branch <code>semana6</code>).</p><a href="https://moodle4.uesb.br/mod/assign/view.php?id=30089">Acessar no Moodle →</a></article>
+      <article><span class="number">Atividade 10 · Semana 6</span><h3>Questionário: Prog. Assíncrona</h3><p>Questionário de 10 questões sobre Future, Stream e Isolates (Peso 5 · Concluído em 29/10/2026 com 4,50/5,00 — 90%).</p><a href="https://moodle4.uesb.br/mod/quiz/view.php?id=31597">Acessar no Moodle →</a></article>
+    </div>
+    <p class="notice">Os links do Moodle exigem autenticação em <code>moodle4.uesb.br</code>. Todo o conteúdo didático, roteiros, revisões de questionários e códigos podem ser consultados localmente sem login através do <a href="docs/portal-moodle-html/index.html">Portal HTML Completo</a>.</p>
+  </section>
+  <footer>Desenvolvimento Mobile I · UESB · 2026.2 · Antônia Graciela Silva Costa Silva</footer>
 </main>
 </body>
 </html>
-

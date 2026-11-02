@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Semana 6 — Programação Assíncrona em Dart (Atividades 9 e 10) — Desenvolvimento Mobile I (UESB)</title>
+  <style>
+:root {
+  --bg: #0b1020;
+  --bg-card: #131b31;
+  --bg-card-alt: #182340;
+  --text: #eef2ff;
+  --muted: #94a3b8;
+  --primary: #38bdf8;
+  --secondary: #818cf8;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --border: #26355ca8;
+  --code-bg: #070b16;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  padding-bottom: 60px;
+}
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+header.top-hero {
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 55%, #0c4a6e 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 28px 24px;
+}
+.container { max-width: 1260px; margin: 0 auto; padding: 0 20px; }
+.badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
+  padding: 4px 11px; border-radius: 999px; letter-spacing: 0.04em;
+}
+.badge-primary { background: rgba(56, 189, 248, 0.16); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.35); }
+.badge-success { background: rgba(34, 197, 94, 0.16); color: #86efac; border: 1px solid rgba(34, 197, 94, 0.35); }
+.badge-warning { background: rgba(245, 158, 11, 0.16); color: #fcd34d; border: 1px solid rgba(245, 158, 11, 0.35); }
+.badge-danger  { background: rgba(239, 68, 68, 0.16); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.35); }
+h1 { font-size: 1.85rem; font-weight: 800; margin-bottom: 6px; color: #fff; }
+.subtitle { color: var(--muted); font-size: 0.98rem; }
+nav.navbar {
+  background: #0e1528;
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 50;
+}
+nav.navbar .nav-inner {
+  display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 20px; max-width: 1260px; margin: 0 auto;
+}
+nav.navbar a {
+  padding: 7px 13px; border-radius: 8px; font-size: 0.85rem; font-weight: 600;
+  color: #cbd5e1; background: rgba(255,255,255,0.03); border: 1px solid transparent;
+  transition: all 0.15s;
+}
+nav.navbar a:hover, nav.navbar a.active {
+  color: #fff; background: rgba(56, 189, 248, 0.16); border-color: rgba(56, 189, 248, 0.45);
+  text-decoration: none;
+}
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 18px; margin-top: 20px; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 20px; }
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+}
+.card h2 { font-size: 1.28rem; margin-bottom: 12px; color: #f8fafc; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.card h3 { font-size: 1.06rem; margin: 14px 0 8px; color: #7dd3fc; }
+.card p, .card li { color: #dbeafe; font-size: 0.94rem; }
+.card ul, .card ol { padding-left: 20px; margin: 8px 0; }
+.card li { margin-bottom: 5px; }
+table.data-table {
+  width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.88rem;
+}
+table.data-table th, table.data-table td {
+  border: 1px solid var(--border); padding: 9px 11px; text-align: left; vertical-align: top;
+}
+table.data-table th { background: var(--bg-card-alt); color: #93c5fd; font-weight: 700; }
+table.data-table tr:nth-child(even) { background: rgba(255,255,255,0.015); }
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  overflow-x: auto;
+  font-family: 'Cascadia Code', Consolas, monospace;
+  font-size: 0.84rem;
+  color: #e2e8f0;
+  margin-top: 10px;
+  white-space: pre-wrap;
+}
+code {
+  font-family: 'Cascadia Code', Consolas, monospace;
+  background: rgba(56, 189, 248, 0.12);
+  color: #7dd3fc;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+pre code { background: none; padding: 0; color: inherit; }
+.alert {
+  border-left: 4px solid var(--primary);
+  background: rgba(56, 189, 248, 0.08);
+  padding: 13px 16px;
+  border-radius: 0 8px 8px 0;
+  margin: 14px 0;
+  font-size: 0.92rem;
+}
+.alert-warn { border-left-color: var(--warning); background: rgba(245, 158, 11, 0.1); }
+.alert-ok   { border-left-color: var(--success); background: rgba(34, 197, 94, 0.1); }
+.alert-err  { border-left-color: var(--danger); background: rgba(239, 68, 68, 0.1); }
+.btn-link {
+  display: inline-block; margin-top: 8px; margin-right: 8px;
+  padding: 7px 13px; border-radius: 7px; font-weight: 600; font-size: 0.84rem;
+  background: rgba(56, 189, 248, 0.16); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.4);
+}
+.btn-link:hover { background: rgba(56, 189, 248, 0.28); text-decoration: none; }
+footer {
+  margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--border);
+  text-align: center; color: var(--muted); font-size: 0.84rem;
+}
+</style>
+</head>
+<body>
+  <header class="top-hero">
+    <div class="container">
+      <div class="badge-row">
+        <span class="badge badge-primary">UESB · Licenciatura em Computação / ADS · 2026.2</span>
+        <span class="badge badge-success">Moodle ID 1094 · 100% Sincronizado (52 Arquivos)</span>
+        <span class="badge badge-warning">Estudante: Antônia Graciela Silva Costa Silva</span>
+      </div>
+      <h1>Semana 6 — Programação Assíncrona em Dart (Atividades 9 e 10)</h1>
+      <p class="subtitle">Disciplina: <strong>Desenvolvimento Mobile I (60h)</strong> · Docente: <strong>Prof. Dr. Edilson Luiz do Nascimento</strong> · Mediador: <strong>Dárcio Rocha</strong> · Polo Macaúbas</p>
+    </div>
+  </header>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="">🏠 Painel & Notas</a>
+<a href="semana-1.html" class="">Semana 1 (A1–A3)</a>
+<a href="semana-2.html" class="">Semana 2 (A4)</a>
+<a href="semana-3.html" class="">Semana 3 (A5–A6)</a>
+<a href="semana-4.html" class="">Semana 4 (A7)</a>
+<a href="semana-5-atividade-8.html" class="">Semana 5 (A8 — OO)</a>
+<a href="semana-6-atividade-9-10.html" class="active">Semana 6 (A9–A10 — Async)</a>
+<a href="revisao-questionarios.html" class="">📝 31 Questões (A2, A5, A10)</a>
+<a href="glossario-mobile.html" class="">📖 Glossário A–Z</a>
+<a href="acervo-sincronizado-moodle.html" class="">📦 Acervo 52 Arquivos</a>
+    </div>
+  </nav>
+  <main class="container">
+    
+    <div class="card">
+      <h2>📅 Agenda da Semana 6 (<code>id=31587</code> — Programação Assíncrona em Dart — Atividades 9 e 10)</h2>
+      <ul>
+        <li>Assistir à videoaula <strong>Programação assíncrona</strong> (<code>31591_6-Programação assíncrona - Roteiro.m4v</code> — 51,8 MB) e à <strong>Videoaula exemplo programação síncrona</strong> (<code>id=31594</code>).</li>
+        <li>Estudar a <strong>Leitura do Capítulo 10 — Programação Assíncrona</strong> (<code>31592_cap10-progAssincrona.pdf</code> — 2,40 MB) e os <strong>Slides da aula</strong> (<code>31598_slides_programacao_assincrona.pdf</code> — 1,19 MB).</li>
+        <li>Implementar o <strong>Roteiro — Programação Assíncrona</strong> (<code>31593_Roteiro - programação assíncrona.docx</code>) na branch <a href="https://github.com/antoniacosta25/FirebaseApp/tree/semana6" target="_blank"><code>semana6</code></a>.</li>
+        <li><strong>Atividade 9 (<code>id=30089</code> — Valor: 10 pontos, Peso 10):</strong> Link oficial da branch: <a href="https://github.com/antoniacosta25/FirebaseApp/tree/semana6" target="_blank"><code>https://github.com/antoniacosta25/FirebaseApp/tree/semana6</code></a>.<br/>
+          <em>Nota técnica: Na página da Agenda da Semana 6 (<code>id=31587</code>), o texto "Enviar o link do código da semana no Github" aponta por engano para <code>id=31001</code> (Semana 5); o link correto da Atividade 9 é <code>https://moodle4.uesb.br/mod/assign/view.php?id=30089</code>.</em>
+        </li>
+        <li><strong>Atividade 10 — Questionário: Programação Assíncrona (<code>id=31597</code> — Peso 5):</strong> Concluída em <code>29/10/2026 às 15:00</code> com <strong>Nota 4,50 / 5,00 (90%)</strong> (<a href="revisao-questionarios.html#a10">ver revisão completa das 10 questões</a>).</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>📜 Texto Integral Extraído do Roteiro da Semana 6 (<code>31593_Roteiro - programação assíncrona.docx</code>)</h2>
+      <pre><code>Roteiro Prático
+1 - Crie uma nova branch (versão) do projeto chamada de semana6
+git branch semana6
+2 - Faça o checkout nessa nova branch
+git checkout semana6
+3 - Crie o arquivo test/async_test.dart
+4 - Métodos comuns para Programação Assíncrona
+import
+&#x27;package:flutter_test/flutter_test.dart&#x27;
+;
+Future
+&lt;
+int
+&gt;
+process
+()
+async
+{
+await
+Future
+.
+delayed
+(
+Duration
+(
+seconds
+:
+5
+));
+return
+0
+;
+}
+Map
+&lt;
+String
+,
+List
+&lt;
+double
+&gt;&gt; alunos
+=
+{
+&#x27;Maria&#x27;
+:
+[
+8.0
+,
+9.0
+],
+&#x27;Bruna&#x27;
+:
+[
+7.0
+,
+7.0
+],
+&#x27;Carla&#x27;
+:
+[
+10.0
+,
+9.0
+],
+};
+Future
+&lt;
+List
+&lt;
+double
+&gt;?&gt;
+search
+(
+String
+key
+)
+async
+{
+return
+Future
+.
+delayed
+(
+Duration
+(
+seconds
+:
+2
+), () {
+if
+(alunos.
+containsKey
+(
+key
+)) {
+return
+alunos[
+key
+]
+!
+;
+}
+throw
+ArgumentError
+(
+&#x27;Aluno não encontrado.&#x27;
+);
+});
+}
+Stream
+&lt;
+int
+&gt;
+count
+()
+async*
+{
+for
+(
+int
+i
+=
+1
+; i
+&lt;=
+3
+; i
+++
+) {
+await
+Future
+.
+delayed
+(
+Duration
+(
+seconds
+:
+1
+));
+yield
+i;
+}
+}
+void
+main
+() {
+group
+(
+&#x27;Testes de programação assíncrona&#x27;
+, () {
+late
+Future
+&lt;
+int
+&gt; result;
+setUp
+(()
+=&gt;
+result
+=
+process
+());
+test
+(
+&#x27;Aguardando...&#x27;
+, ()
+=&gt;
+expect
+(result, isNotNull));
+test
+(
+&#x27;Testando o resultado&#x27;
+, ()
+async
+{
+int
+num
+=
+await
+result;
+expect
+(num,
+0
+);
+});
+test
+(
+&#x27;Testando busca sem erros em Future&#x27;
+, () {
+search
+(
+&#x27;Maria&#x27;
+).
+then
+((
+notas
+)
+=&gt;
+expect
+(
+notas
+, [
+8.0
+,
+9.0
+]));
+});
+test
+(
+&#x27;Testando busca com erros em Future&#x27;
+, () {
+search
+(
+&#x27;Paula&#x27;
+).
+then
+((
+notas
+) {}).
+catchError
+((
+error
+) {
+expect
+(
+error
+,
+isA
+&lt;
+ArgumentError
+&gt;());
+});
+});
+test
+(
+&#x27;Testando contagem em Stream&#x27;
+, () {
+List
+&lt;
+int
+&gt; resultados
+=
+[];
+count
+().
+listen
+(
+(
+resultado
+) {
+resultados.
+add
+(
+resultado
+);
+},
+onDone
+:
+() {
+expect
+(resultados, [
+1
+,
+2
+,
+3
+]);
+},
+onError
+:
+(
+error
+)
+=&gt;
+expect
+(
+error
+, isNotNull),
+);
+});
+});
+}
+5 - Crie uma Stream que calcula a média das notas
+A Stream recebe uma lista de nomes e usa o método assíncrono de pesquisa para calcular uma média e retornar os resultados em tempos diferentes.
+...
+Stream
+&lt;
+double
+&gt;
+media
+(
+List
+&lt;
+String
+&gt;
+nomes
+)
+async*
+{
+for
+(
+String
+nome
+in
+nomes
+) {
+List
+&lt;
+double
+&gt;
+?
+notas
+=
+await
+search
+(nome);
+...
+}
+}
+void
+main
+() {
+group
+(
+&#x27;Testes de programação assíncrona&#x27;
+, () {
+...
+test
+(
+&#x27;Testando media em Stream&#x27;
+, () {
+List
+&lt;
+double
+&gt; resultados
+=
+[];
+media
+([
+&#x27;Maria&#x27;
+,
+&#x27;Paula&#x27;
+,
+&#x27;Bruna&#x27;
+]).
+listen
+(
+(
+resultado
+) {
+resultados.
+add
+(
+resultado
+);
+},
+onDone
+:
+() {
+expect
+(resultados, [
+8.5
+,
+7
+]);
+},
+onError
+:
+(
+error
+)
+=&gt;
+expect
+(
+error
+,
+isA
+&lt;
+ArgumentError
+&gt;()),
+);
+});
+});
+}
+6 -
+Submeta
+a branch para o servidor
+git add .
+git commit -m “Semana 6”
+git push origin semana6
+7 - Faça os testes do código
+8 - Envie o link da branch para avaliação
+https://github.com/walberbeltrame/FlutterApp/tree/semana6</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>💻 Código-Fonte Auditado da Branch <code>semana6</code> (<code>lib/assincrono.dart</code> e <code>test/async_test.dart</code> — 6 Testes Unitários)</h2>
+      <h3>Arquivo 1: <code>lib/assincrono.dart</code></h3>
+      <pre><code>// Exemplos da Semana 6: dados em memória, sem serviços externos.
+const alunos = &lt;String, List&lt;double&gt;&gt;{
+  &#x27;Maria&#x27;: [8.0, 9.0],
+  &#x27;Bruna&#x27;: [7.0, 7.0],
+  &#x27;Carla&#x27;: [10.0, 9.0],
+};
+
+Future&lt;int&gt; process() async {
+  await Future&lt;void&gt;.delayed(const Duration(seconds: 5));
+  return 0;
+}
+
+Future&lt;List&lt;double&gt;&gt; search(String nome) async {
+  await Future&lt;void&gt;.delayed(const Duration(seconds: 2));
+  final notas = alunos[nome];
+  if (notas == null) {
+    throw ArgumentError(&#x27;Aluno não encontrado: $nome&#x27;);
+  }
+  return List&lt;double&gt;.of(notas);
+}
+
+Stream&lt;int&gt; count() async* {
+  for (var numero = 1; numero &lt;= 3; numero++) {
+    await Future&lt;void&gt;.delayed(const Duration(seconds: 1));
+    yield numero;
+  }
+}
+
+Stream&lt;double&gt; media(List&lt;String&gt; nomes) {
+  return Stream&lt;String&gt;.fromIterable(nomes).asyncExpand((nome) {
+    return Stream&lt;double&gt;.fromFuture(
+      search(nome).then((notas) {
+        final soma = notas.reduce((total, nota) =&gt; total + nota);
+        return soma / notas.length;
+      }),
+    );
+  });
+}
+</code></pre>
+      <h3>Arquivo 2: <code>test/async_test.dart</code></h3>
+      <pre><code>import &#x27;package:firebase_app/assincrono.dart&#x27;;
+import &#x27;package:flutter_test/flutter_test.dart&#x27;;
+
+void main() {
+  group(&#x27;Atividade 9 — Semana 6: Programação Assíncrona&#x27;, () {
+    test(&#x27;process termina com resultado zero&#x27;, () async {
+      expect(await process(), 0);
+    });
+    test(&#x27;search encontra as notas de Maria&#x27;, () async {
+      expect(await search(&#x27;Maria&#x27;), [8.0, 9.0]);
+    });
+    test(&#x27;search informa erro para nome inexistente&#x27;, () async {
+      await expectLater(search(&#x27;Paula&#x27;), throwsArgumentError);
+    });
+    test(&#x27;count emite 1, 2 e 3 e termina&#x27;, () async {
+      await expectLater(count(), emitsInOrder([1, 2, 3, emitsDone]));
+    });
+    test(&#x27;media calcula cada aluno na ordem informada&#x27;, () async {
+      await expectLater(
+        media([&#x27;Maria&#x27;, &#x27;Bruna&#x27;, &#x27;Carla&#x27;]),
+        emitsInOrder([8.5, 7.0, 9.5, emitsDone]),
+      );
+    });
+    test(&#x27;media continua com Bruna depois do erro de Paula&#x27;, () async {
+      await expectLater(
+        media([&#x27;Maria&#x27;, &#x27;Paula&#x27;, &#x27;Bruna&#x27;]),
+        emitsInOrder([8.5, emitsError(isA&lt;ArgumentError&gt;()), 7.0, emitsDone]),
+      );
+    });
+  });
+}
+</code></pre>
+    </div>
+    
+    <footer>
+      Portal HTML Acadêmico Integrado · Gerado e auditado em 02/11/2026 19:40:57 · Repositórios: <code>ANTONIA-GRACIELA-UESB-ENTREGAS</code>, <code>FirebaseApp</code> e <code>FlutterApp</code>.
+    </footer>
+  </main>
+</body>
+</html>

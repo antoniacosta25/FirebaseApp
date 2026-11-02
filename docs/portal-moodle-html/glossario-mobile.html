@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glossário Completo de Desenvolvimento Mobile (40 Termos) — Desenvolvimento Mobile I (UESB)</title>
+  <style>
+:root {
+  --bg: #0b1020;
+  --bg-card: #131b31;
+  --bg-card-alt: #182340;
+  --text: #eef2ff;
+  --muted: #94a3b8;
+  --primary: #38bdf8;
+  --secondary: #818cf8;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --border: #26355ca8;
+  --code-bg: #070b16;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  padding-bottom: 60px;
+}
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+header.top-hero {
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 55%, #0c4a6e 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 28px 24px;
+}
+.container { max-width: 1260px; margin: 0 auto; padding: 0 20px; }
+.badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
+  padding: 4px 11px; border-radius: 999px; letter-spacing: 0.04em;
+}
+.badge-primary { background: rgba(56, 189, 248, 0.16); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.35); }
+.badge-success { background: rgba(34, 197, 94, 0.16); color: #86efac; border: 1px solid rgba(34, 197, 94, 0.35); }
+.badge-warning { background: rgba(245, 158, 11, 0.16); color: #fcd34d; border: 1px solid rgba(245, 158, 11, 0.35); }
+.badge-danger  { background: rgba(239, 68, 68, 0.16); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.35); }
+h1 { font-size: 1.85rem; font-weight: 800; margin-bottom: 6px; color: #fff; }
+.subtitle { color: var(--muted); font-size: 0.98rem; }
+nav.navbar {
+  background: #0e1528;
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 50;
+}
+nav.navbar .nav-inner {
+  display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 20px; max-width: 1260px; margin: 0 auto;
+}
+nav.navbar a {
+  padding: 7px 13px; border-radius: 8px; font-size: 0.85rem; font-weight: 600;
+  color: #cbd5e1; background: rgba(255,255,255,0.03); border: 1px solid transparent;
+  transition: all 0.15s;
+}
+nav.navbar a:hover, nav.navbar a.active {
+  color: #fff; background: rgba(56, 189, 248, 0.16); border-color: rgba(56, 189, 248, 0.45);
+  text-decoration: none;
+}
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 18px; margin-top: 20px; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 20px; }
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+}
+.card h2 { font-size: 1.28rem; margin-bottom: 12px; color: #f8fafc; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.card h3 { font-size: 1.06rem; margin: 14px 0 8px; color: #7dd3fc; }
+.card p, .card li { color: #dbeafe; font-size: 0.94rem; }
+.card ul, .card ol { padding-left: 20px; margin: 8px 0; }
+.card li { margin-bottom: 5px; }
+table.data-table {
+  width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.88rem;
+}
+table.data-table th, table.data-table td {
+  border: 1px solid var(--border); padding: 9px 11px; text-align: left; vertical-align: top;
+}
+table.data-table th { background: var(--bg-card-alt); color: #93c5fd; font-weight: 700; }
+table.data-table tr:nth-child(even) { background: rgba(255,255,255,0.015); }
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  overflow-x: auto;
+  font-family: 'Cascadia Code', Consolas, monospace;
+  font-size: 0.84rem;
+  color: #e2e8f0;
+  margin-top: 10px;
+  white-space: pre-wrap;
+}
+code {
+  font-family: 'Cascadia Code', Consolas, monospace;
+  background: rgba(56, 189, 248, 0.12);
+  color: #7dd3fc;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+pre code { background: none; padding: 0; color: inherit; }
+.alert {
+  border-left: 4px solid var(--primary);
+  background: rgba(56, 189, 248, 0.08);
+  padding: 13px 16px;
+  border-radius: 0 8px 8px 0;
+  margin: 14px 0;
+  font-size: 0.92rem;
+}
+.alert-warn { border-left-color: var(--warning); background: rgba(245, 158, 11, 0.1); }
+.alert-ok   { border-left-color: var(--success); background: rgba(34, 197, 94, 0.1); }
+.alert-err  { border-left-color: var(--danger); background: rgba(239, 68, 68, 0.1); }
+.btn-link {
+  display: inline-block; margin-top: 8px; margin-right: 8px;
+  padding: 7px 13px; border-radius: 7px; font-weight: 600; font-size: 0.84rem;
+  background: rgba(56, 189, 248, 0.16); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.4);
+}
+.btn-link:hover { background: rgba(56, 189, 248, 0.28); text-decoration: none; }
+footer {
+  margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--border);
+  text-align: center; color: var(--muted); font-size: 0.84rem;
+}
+</style>
+</head>
+<body>
+  <header class="top-hero">
+    <div class="container">
+      <div class="badge-row">
+        <span class="badge badge-primary">UESB · Licenciatura em Computação / ADS · 2026.2</span>
+        <span class="badge badge-success">Moodle ID 1094 · 100% Sincronizado (52 Arquivos)</span>
+        <span class="badge badge-warning">Estudante: Antônia Graciela Silva Costa Silva</span>
+      </div>
+      <h1>Glossário Completo de Desenvolvimento Mobile (40 Termos)</h1>
+      <p class="subtitle">Disciplina: <strong>Desenvolvimento Mobile I (60h)</strong> · Docente: <strong>Prof. Dr. Edilson Luiz do Nascimento</strong> · Mediador: <strong>Dárcio Rocha</strong> · Polo Macaúbas</p>
+    </div>
+  </header>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="">🏠 Painel & Notas</a>
+<a href="semana-1.html" class="">Semana 1 (A1–A3)</a>
+<a href="semana-2.html" class="">Semana 2 (A4)</a>
+<a href="semana-3.html" class="">Semana 3 (A5–A6)</a>
+<a href="semana-4.html" class="">Semana 4 (A7)</a>
+<a href="semana-5-atividade-8.html" class="">Semana 5 (A8 — OO)</a>
+<a href="semana-6-atividade-9-10.html" class="">Semana 6 (A9–A10 — Async)</a>
+<a href="revisao-questionarios.html" class="">📝 31 Questões (A2, A5, A10)</a>
+<a href="glossario-mobile.html" class="active">📖 Glossário A–Z</a>
+<a href="acervo-sincronizado-moodle.html" class="">📦 Acervo 52 Arquivos</a>
+    </div>
+  </nav>
+  <main class="container">
+    
+    <div class="card">
+      <h2>📖 Glossário Oficial de Termos de Desenvolvimento Mobile (<code>id=29912</code> — 40 Termos A–Z)</h2>
+      <p>Extraído integralmente da visualização completa (<code>hook=ALL&amp;page=-1</code>) do Moodle UESB (base da Atividade Avaliativa 3 — Palavras Cruzadas):</p>
+      <table class="data-table">
+        <thead>
+          <tr><th style="width:240px;">Termo / Conceito</th><th>Definição Oficial no Moodle UESB</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Acessibilidade</strong></td><td>Garantia de que um aplicativo ou site possa ser plenamente utilizado por pessoas com diferentes tipos de habilidades, deficiências ou necessidades especiais.</td></tr>
+<tr><td><strong>ANDROID</strong></td><td>Uma das duas principais plataformas de desenvolvimento em computação móvel.</td></tr>
+<tr><td><strong>Android Studio</strong></td><td>Plataforma de desenvolvimento (IDE) oficial do Google voltada exclusivamente para a criação de aplicativos para o sistema operacional Android.</td></tr>
+<tr><td><strong>Arquitetura da Informação</strong></td><td>Prática de UX que consiste em organizar, estruturar e rotular o conteúdo de um aplicativo de forma lógica para facilitar a navegação e a localização de informações pelo usuário.</td></tr>
+<tr><td><strong>Arquiteturas Híbridas</strong></td><td>Arquiteturas que combinam elementos nativos e tecnologias web para oferecer experiências ricas, acessíveis e multiplataformas aos usuários.</td></tr>
+<tr><td><strong>BLOCKCHAIN</strong></td><td>Tecnologia de criptografia e registro descentralizado usada em aplicativos móveis para garantir transações seguras e dados à prova de violação.</td></tr>
+<tr><td><strong>BUBBLE</strong></td><td>Plataforma No Code que permite a criação visual de aplicativos web e móveis sem codificação, contendo funcionalidades de banco de dados integradas.</td></tr>
+<tr><td><strong>CHATBOTS</strong></td><td>Sistemas de conversação automatizados acionados por IA para fornecer suporte ao cliente e interações em tempo real nos aplicativos.</td></tr>
+<tr><td><strong>Computação Móvel</strong></td><td>Tecnologia que permite o uso de dispositivos computacionais (como smartphones e tablets) enquanto o usuário está em movimento, proporcionando acesso a uma ampla gama de serviços e aplicativos.</td></tr>
+<tr><td><strong>Consistência Visual</strong></td><td>Manutenção do mesmo padrão de cores, fontes, espaçamentos e estilos visuais em todas as telas de um aplicativo para criar uma experiência unificada.</td></tr>
+<tr><td><strong>Cores e Tipografia</strong></td><td>Seleção de paletas cromáticas e famílias de fontes que se alinham com a identidade visual do produto e otimizam a legibilidade do conteúdo textual.</td></tr>
+<tr><td><strong>Desenvolvimento Low Code</strong></td><td>Abordagem de desenvolvimento que utiliza interfaces visuais e ferramentas gráficas de arrastar e soltar com configurações simples, reduzindo a necessidade de codificação manual.</td></tr>
+<tr><td><strong>Desenvolvimento Multiplataforma</strong></td><td>Abordagem que permite criar aplicativos que funcionam em várias plataformas, como Android e iOS, utilizando uma única base de código comum.</td></tr>
+<tr><td><strong>Desenvolvimento No Code</strong></td><td>Metodologia de criação de aplicativos que não requer nenhuma habilidade ou conhecimento de codificação, sendo realizada por meio de interfaces totalmente visuais e intuitivas.</td></tr>
+<tr><td><strong>Desenvolvimento Tradicional</strong></td><td>Abordagem de criação de software focada em programação manual, onde desenvolvedores criam algoritmos, estruturas de dados e lógica a partir do zero.</td></tr>
+<tr><td><strong>Design de Interação</strong></td><td>Criação de fluxos e caminhos de interface intuitivos que respondem às ações dos usuários de forma previsível, amigável e altamente eficaz.</td></tr>
+<tr><td><strong>Design sem Toque</strong></td><td>Interfaces de usuário inovadoras que respondem a gestos, comandos de voz e movimentos corporais do usuário, dispensando o contato físico direto com a tela.</td></tr>
+<tr><td><strong>FLUTTER</strong></td><td>Framework de interface de usuário (UI) de código aberto criado pelo Google para desenvolvimento de aplicativos multiplataforma usando uma base de código comum.</td></tr>
+<tr><td><strong>Flutter Flow</strong></td><td>Ferramenta No Code para criar aplicativos móveis de forma totalmente visual, oferecendo controle completo sobre o design e a interatividade.</td></tr>
+<tr><td><strong>IDE (Integrated Development Environment)</strong></td><td>Ambiente de Desenvolvimento Integrado. Um conjunto de ferramentas unificadas (como editor de código, compilador e depurador) que facilita a criação de aplicativos.</td></tr>
+<tr><td><strong>Inteligência Artificial (IA)</strong></td><td>Tecnologia emergente em computação móvel usada para analisar padrões de comportamento, prever necessidades e automatizar tarefas nos aplicativos.</td></tr>
+<tr><td><strong>Internet das Coisas (IoT)</strong></td><td>Rede de dispositivos físicos (eletrodomésticos, câmeras, sensores) que se conectam à internet e podem ser controlados e monitorados através de aplicativos móveis.</td></tr>
+<tr><td><strong>iOS</strong></td><td>Uma das duas principais plataformas de desenvolvimento em computação móvel, exclusiva para dispositivos fabricados pela Apple (como iPhone e iPad).</td></tr>
+<tr><td><strong>KODULAR</strong></td><td>Plataforma No Code online voltada para a criação de aplicativos móveis para o sistema operacional Android.</td></tr>
+<tr><td><strong>LAYOUT</strong></td><td>Organização espacial e visual dos elementos de design na tela para criar uma estrutura coesa e intuitiva.</td></tr>
+<tr><td><strong>Microinterações</strong></td><td>Detalhes de design interativo (como pequenas animações e efeitos táteis) que respondem sutilmente à ação do usuário, fornecendo feedback visual imediato.</td></tr>
+<tr><td><strong>Microsoft Power Apps</strong></td><td>Solução de desenvolvimento Low Code da Microsoft que permite criar aplicativos com facilidade, contando com integração nativa com o Office 365.</td></tr>
+<tr><td><strong>OutSystems</strong></td><td>Uma plataforma líder de desenvolvimento Low Code que oferece criação rápida de aplicativos e facilidade para integração de sistemas complexos.</td></tr>
+<tr><td><strong>Pesquisa do Usuário</strong></td><td>Pilar de UX focado em compreender as necessidades, desejos e comportamentos dos usuários reais por meio de pesquisas, entrevistas e análises de mercado.</td></tr>
+<tr><td><strong>Programação Manual</strong></td><td>Prática clássica do desenvolvimento tradicional onde se escreve todo o código-fonte manualmente, proporcionando flexibilidade total, mas exigindo alto tempo e habilidade.</td></tr>
+<tr><td><strong>React Native</strong></td><td>Ferramenta popular de desenvolvimento multiplataforma que permite aos desenvolvedores criar aplicativos consistentes e eficientes para diferentes sistemas operacionais.</td></tr>
+<tr><td><strong>RESPONSIVIDADE</strong></td><td>Capacidade de adaptação de um layout visual de tela para diferentes dispositivos e tamanhos físicos de display, mantendo a consistência da experiência.</td></tr>
+<tr><td><strong>Saúde Conectada</strong></td><td>Integração de aplicativos móveis a sensores e wearables de saúde para monitorar dados médicos, atividades físicas e sinais vitais do usuário em tempo real.</td></tr>
+<tr><td><strong>SDK (Software Development Kit)</strong></td><td>Kit de Desenvolvimento de Software. Um conjunto de ferramentas, bibliotecas e ambientes de execução essenciais para criar aplicativos para uma plataforma específica.</td></tr>
+<tr><td><strong>Tecnologia 5G</strong></td><td>Rede de conectividade móvel de quinta geração que oferece velocidades de dados ultra-rápidas e latência mínima, permitindo o funcionamento de aplicativos ricos em recursos.</td></tr>
+<tr><td><strong>Testes de Usabilidade</strong></td><td>Avaliações práticas realizadas com usuários reais para identificar problemas de navegação, gargalos na interface e oportunidades de melhorias no design.</td></tr>
+<tr><td><strong>UI (User Interface)</strong></td><td>Interface do Usuário. O aspecto estético e visual do design que o usuário vê e com o qual interage diretamente, incluindo botões, menus, ícones, cores e tipografia.</td></tr>
+<tr><td><strong>USABILIDADE</strong></td><td>Atributo de qualidade que mede quão fácil, direto e intuitivo é o fluxo de trabalho de um produto digital durante o uso.</td></tr>
+<tr><td><strong>UX (User Experience)</strong></td><td>Experiência do Usuário. Refere-se à percepção e experiência geral que uma pessoa tem ao interagir com um aplicativo ou website, abrangendo utilidade, facilidade de uso e satisfação.</td></tr>
+<tr><td><strong>XCODE</strong></td><td>Ambiente de desenvolvimento integrado (IDE) oficial e obrigatório da Apple para a criação de aplicativos para iOS, macOS e watchOS.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <footer>
+      Portal HTML Acadêmico Integrado · Gerado e auditado em 02/11/2026 19:40:57 · Repositórios: <code>ANTONIA-GRACIELA-UESB-ENTREGAS</code>, <code>FirebaseApp</code> e <code>FlutterApp</code>.
+    </footer>
+  </main>
+</body>
+</html>
