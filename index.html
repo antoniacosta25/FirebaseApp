@@ -5,21 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Atividades de Desenvolvimento Mobile I da UESB, organizadas por plataforma.">
   <title>Desenvolvimento Mobile I | Atividades</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet">
   <style>
-    :root { color-scheme: light; --ink:#112c30; --muted:#4d6665; --paper:#f7f5ed; --accent:#c85a32; --line:#cdd8cf; }
+    :root { color-scheme: light; --ink:#432338; --muted:#72596a; --paper:#fff7f8; --accent:#a43165; --line:#e8ccd8; }
     * { box-sizing:border-box; }
-    body { margin:0; font-family:Georgia,serif; color:var(--ink); background:radial-gradient(circle at 90% 0%,#d8e8d8,transparent 36rem),var(--paper); line-height:1.6; }
+    body { margin:0; font-family:"Playfair Display",Georgia,serif; color:var(--ink); background:radial-gradient(ellipse at 92% 0%,#f5cfdd,transparent 37rem),radial-gradient(ellipse at 0% 55%,#f9e3eb,transparent 35rem),var(--paper); line-height:1.6; }
     main { width:min(1040px,calc(100% - 40px)); margin:auto; }
     header { padding:76px 0 48px; border-bottom:1px solid var(--line); }
-    .eyebrow,.number,.tag { font:700 .75rem/1.4 Arial,sans-serif; letter-spacing:.13em; text-transform:uppercase; }
+    .eyebrow,.number,.tag { font:700 .75rem/1.4 "DM Sans",sans-serif; letter-spacing:.13em; text-transform:uppercase; }
     .eyebrow { color:var(--accent); } h1 { max-width:800px; font-size:clamp(2.8rem,8vw,6rem); line-height:1; letter-spacing:-.055em; margin:18px 0 24px; }
     .intro { max-width:650px; font-size:1.2rem; color:var(--muted); }
     h2 { font-size:2rem; margin:0; letter-spacing:-.03em; } section { padding:52px 0; border-bottom:1px solid var(--line); }
     .section-header { display:flex; justify-content:space-between; gap:20px; align-items:baseline; margin-bottom:24px; }
     .tag { color:var(--muted); } .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-    article { background:#fffefa; border:1px solid var(--line); padding:24px; display:flex; flex-direction:column; min-height:215px; }
-    .number { color:var(--accent); } h3 { font-size:1.35rem; line-height:1.2; margin:14px 0 8px; } article p { color:var(--muted); margin:0 0 22px; } a { color:#174f4b; text-underline-offset:4px; } article a { margin-top:auto; font-family:Arial,sans-serif; font-weight:700; }
-    .notice { font-family:Arial,sans-serif; font-size:.9rem; color:var(--muted); max-width:740px; } footer { padding:28px 0 50px; font-family:Arial,sans-serif; font-size:.85rem; color:var(--muted); }
+    article { background:rgba(255,255,255,.75); border:1px solid var(--line); border-radius:18px; padding:26px; box-shadow:0 12px 35px rgba(108,37,70,.04); display:flex; flex-direction:column; min-height:215px; }
+    .number { color:var(--accent); } h3 { font-size:1.35rem; line-height:1.2; margin:14px 0 8px; } article p { color:var(--muted); margin:0 0 22px; } a { color:#8f2859; text-underline-offset:4px; } article a { margin-top:auto; font-family:"DM Sans",sans-serif; font-weight:700; }
+    .notice { font-family:"DM Sans",sans-serif; font-size:.9rem; color:var(--muted); max-width:740px; } footer { padding:28px 0 50px; font-family:"DM Sans",sans-serif; font-size:.85rem; color:var(--muted); }
     a:focus-visible { outline:3px solid var(--accent); outline-offset:4px; }
     @media(max-width:700px){ header{padding-top:48px} .grid{grid-template-columns:1fr} article{min-height:0} .section-header{display:block} }
   </style>
@@ -29,8 +32,16 @@
   <header>
     <span class="eyebrow">UESB / Análise e Desenvolvimento de Sistemas</span>
     <h1>Desenvolvimento<br>Mobile I<span style="color:var(--accent)">.</span></h1>
-    <p class="intro">Um espaço para reunir as atividades da disciplina, seus materiais e projetos em um só lugar.</p>
+    <p class="intro">Aprender, criar e transformar ideias em experiências para dispositivos móveis. Um espaço para reunir os estudos e projetos da disciplina.</p>
   </header>
+  <section aria-labelledby="disciplina">
+    <div class="section-header"><h2 id="disciplina">Sobre a disciplina</h2><span class="tag">Aprendizado em movimento</span></div>
+    <p class="intro">Desenvolvimento Mobile I apresenta os fundamentos da criação de soluções para dispositivos móveis, das plataformas e interfaces aos primeiros programas e estruturas de dados. As atividades conectam teoria e prática ao longo das semanas.</p>
+  </section>
+  <section aria-labelledby="dart">
+    <div class="section-header"><h2 id="dart">Conhecendo Dart</h2><span class="tag">Linguagem &amp; prática</span></div>
+    <p class="intro">Dart é uma linguagem de programação utilizada no desenvolvimento de aplicações, inclusive com o Flutter. Na disciplina, ela aparece em exercícios de lógica, coleções, orientação a objetos e programação assíncrona com <code>Future</code> e <code>Stream</code>.</p>
+  </section>
   <section aria-labelledby="plataformas">
     <div class="section-header"><h2 id="plataformas">Atividades em plataformas</h2><span class="tag">Moodle e ferramentas externas</span></div>
     <div class="grid">
@@ -53,3 +64,4 @@
 </main>
 </body>
 </html>
+
