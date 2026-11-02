@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Semana 5 — Orientação a Objetos em Dart (Atividade 8) — Desenvolvimento Mobile I (UESB)</title>
+  <style>
+:root {
+  --bg: #0b1020;
+  --bg-card: #131b31;
+  --bg-card-alt: #182340;
+  --text: #eef2ff;
+  --muted: #94a3b8;
+  --primary: #38bdf8;
+  --secondary: #818cf8;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --border: #26355ca8;
+  --code-bg: #070b16;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  padding-bottom: 60px;
+}
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+header.top-hero {
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 55%, #0c4a6e 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 28px 24px;
+}
+.container { max-width: 1260px; margin: 0 auto; padding: 0 20px; }
+.badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
+  padding: 4px 11px; border-radius: 999px; letter-spacing: 0.04em;
+}
+.badge-primary { background: rgba(56, 189, 248, 0.16); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.35); }
+.badge-success { background: rgba(34, 197, 94, 0.16); color: #86efac; border: 1px solid rgba(34, 197, 94, 0.35); }
+.badge-warning { background: rgba(245, 158, 11, 0.16); color: #fcd34d; border: 1px solid rgba(245, 158, 11, 0.35); }
+.badge-danger  { background: rgba(239, 68, 68, 0.16); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.35); }
+h1 { font-size: 1.85rem; font-weight: 800; margin-bottom: 6px; color: #fff; }
+.subtitle { color: var(--muted); font-size: 0.98rem; }
+nav.navbar {
+  background: #0e1528;
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 50;
+}
+nav.navbar .nav-inner {
+  display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 20px; max-width: 1260px; margin: 0 auto;
+}
+nav.navbar a {
+  padding: 7px 13px; border-radius: 8px; font-size: 0.85rem; font-weight: 600;
+  color: #cbd5e1; background: rgba(255,255,255,0.03); border: 1px solid transparent;
+  transition: all 0.15s;
+}
+nav.navbar a:hover, nav.navbar a.active {
+  color: #fff; background: rgba(56, 189, 248, 0.16); border-color: rgba(56, 189, 248, 0.45);
+  text-decoration: none;
+}
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 18px; margin-top: 20px; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 20px; }
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+}
+.card h2 { font-size: 1.28rem; margin-bottom: 12px; color: #f8fafc; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.card h3 { font-size: 1.06rem; margin: 14px 0 8px; color: #7dd3fc; }
+.card p, .card li { color: #dbeafe; font-size: 0.94rem; }
+.card ul, .card ol { padding-left: 20px; margin: 8px 0; }
+.card li { margin-bottom: 5px; }
+table.data-table {
+  width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.88rem;
+}
+table.data-table th, table.data-table td {
+  border: 1px solid var(--border); padding: 9px 11px; text-align: left; vertical-align: top;
+}
+table.data-table th { background: var(--bg-card-alt); color: #93c5fd; font-weight: 700; }
+table.data-table tr:nth-child(even) { background: rgba(255,255,255,0.015); }
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  overflow-x: auto;
+  font-family: 'Cascadia Code', Consolas, monospace;
+  font-size: 0.84rem;
+  color: #e2e8f0;
+  margin-top: 10px;
+  white-space: pre-wrap;
+}
+code {
+  font-family: 'Cascadia Code', Consolas, monospace;
+  background: rgba(56, 189, 248, 0.12);
+  color: #7dd3fc;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+pre code { background: none; padding: 0; color: inherit; }
+.alert {
+  border-left: 4px solid var(--primary);
+  background: rgba(56, 189, 248, 0.08);
+  padding: 13px 16px;
+  border-radius: 0 8px 8px 0;
+  margin: 14px 0;
+  font-size: 0.92rem;
+}
+.alert-warn { border-left-color: var(--warning); background: rgba(245, 158, 11, 0.1); }
+.alert-ok   { border-left-color: var(--success); background: rgba(34, 197, 94, 0.1); }
+.alert-err  { border-left-color: var(--danger); background: rgba(239, 68, 68, 0.1); }
+.btn-link {
+  display: inline-block; margin-top: 8px; margin-right: 8px;
+  padding: 7px 13px; border-radius: 7px; font-weight: 600; font-size: 0.84rem;
+  background: rgba(56, 189, 248, 0.16); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.4);
+}
+.btn-link:hover { background: rgba(56, 189, 248, 0.28); text-decoration: none; }
+footer {
+  margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--border);
+  text-align: center; color: var(--muted); font-size: 0.84rem;
+}
+</style>
+</head>
+<body>
+  <header class="top-hero">
+    <div class="container">
+      <div class="badge-row">
+        <span class="badge badge-primary">UESB · Licenciatura em Computação / ADS · 2026.2</span>
+        <span class="badge badge-success">Moodle ID 1094 · 100% Sincronizado (52 Arquivos)</span>
+        <span class="badge badge-warning">Estudante: Antônia Graciela Silva Costa Silva</span>
+      </div>
+      <h1>Semana 5 — Orientação a Objetos em Dart (Atividade 8)</h1>
+      <p class="subtitle">Disciplina: <strong>Desenvolvimento Mobile I (60h)</strong> · Docente: <strong>Prof. Dr. Edilson Luiz do Nascimento</strong> · Mediador: <strong>Dárcio Rocha</strong> · Polo Macaúbas</p>
+    </div>
+  </header>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="">🏠 Painel & Notas</a>
+<a href="semana-1.html" class="">Semana 1 (A1–A3)</a>
+<a href="semana-2.html" class="">Semana 2 (A4)</a>
+<a href="semana-3.html" class="">Semana 3 (A5–A6)</a>
+<a href="semana-4.html" class="">Semana 4 (A7)</a>
+<a href="semana-5-atividade-8.html" class="active">Semana 5 (A8 — OO)</a>
+<a href="semana-6-atividade-9-10.html" class="">Semana 6 (A9–A10 — Async)</a>
+<a href="revisao-questionarios.html" class="">📝 31 Questões (A2, A5, A10)</a>
+<a href="glossario-mobile.html" class="">📖 Glossário A–Z</a>
+<a href="acervo-sincronizado-moodle.html" class="">📦 Acervo 52 Arquivos</a>
+    </div>
+  </nav>
+  <main class="container">
+    
+    <div class="card">
+      <h2>📅 Agenda da Semana 5 (<code>id=30997</code> — Orientação a Objetos em Dart — Atividade 8)</h2>
+      <ul>
+        <li>Assistir à <strong>Videoaula: Roteiro de aula — Orientação a Objetos em Dart</strong> (<code>id=30999</code>) e estudar os <strong>Slides da aula 28/09</strong> (<code>31085_OO_Dart_final.pdf</code> — 1,70 MB).</li>
+        <li>Ler o <strong>Material complementar — Capítulo 8: Orientação a objetos em Dart</strong> (<code>30998_cap 08 - corrigido final.pdf</code> — 758 KB).</li>
+        <li>Implementar o <strong>Roteiro — Prática da Semana 5 — Orientação a Objetos</strong> (<code>31002_5.1-Lógica de Programação Aplicada - Orientação a Objetos.odt</code>) na branch <a href="https://github.com/antoniacosta25/FirebaseApp/tree/semana5" target="_blank"><code>semana5</code></a>.</li>
+        <li><strong>Local de envio da Atividade 8 (<code>id=31001</code> — Valor: 10 pontos, Peso 5):</strong> Link oficial da branch: <a href="https://github.com/antoniacosta25/FirebaseApp/tree/semana5" target="_blank"><code>https://github.com/antoniacosta25/FirebaseApp/tree/semana5</code></a>.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>📜 Texto Integral Extraído do Roteiro da Semana 5 (<code>31002_...Orientação a Objetos.odt</code>)</h2>
+      <pre><code>Roteiro Prático
+1 - Crie uma nova branch (versão) do projeto chamada de semana5
+git branch semana5
+2 - Faça o checkout nessa nova branch
+git checkout semana5
+3 - Crie o arquivo test/obj_test.dart
+4 - Métodos comuns para Orientação a Objetos
+import
+&#x27;package:flutter_test/flutter_test.dart&#x27;
+;
+abstract
+class
+Pessoa
+{
+late
+int
+_id;
+String
+nome;
+Pessoa
+(
+this
+.nome);
+int
+get
+id
+=&gt;
+_id;
+set
+id(
+int
+id
+) {
+if
+(
+id
+&gt;
+0
+) {
+_id
+=
+id
+;
+}
+else
+{
+throw
+ArgumentError
+(
+&#x27;Identificador deve ser não negativo.&#x27;
+);
+}
+}
+}
+mixin
+Ano
+{
+late
+int
+_ano;
+int
+get
+ano
+=&gt;
+_ano;
+set
+ano(
+int
+ano
+) {
+if
+(
+ano
+&gt;
+0
+) {
+_ano
+=
+ano
+;
+}
+else
+{
+throw
+ArgumentError
+(
+&#x27;Ano deve ser não negativo.&#x27;
+);
+}
+}
+}
+class
+Aluno
+extends
+Pessoa
+with
+Ano
+{
+Aluno
+(
+super
+.
+nome
+,
+int
+ano
+) {
+this
+.ano
+=
+ano
+;
+}
+}
+class
+Disciplina
+{
+String
+nome;
+Disciplina
+(
+this
+.nome);
+}
+class
+Turma
+with
+Ano
+{
+Disciplina
+disciplina;
+final
+List
+&lt;
+Aluno
+&gt; _alunos
+=
+[];
+Turma
+(
+this
+.disciplina,
+int
+ano
+) {
+this
+.ano
+=
+ano
+;
+}
+void
+matricular
+(
+Aluno
+aluno
+) {
+if
+(
+aluno
+.ano
+==
+ano) {
+_alunos.
+add
+(
+aluno
+);
+}
+else
+{
+throw
+ArgumentError
+(
+&#x27;Ano deve ser mesmo.&#x27;
+);
+}
+}
+}
+class
+Historico
+extends
+Turma
+{
+Map
+&lt;
+Aluno
+,
+List
+&lt;
+double
+&gt;&gt; notas
+=
+{};
+Historico
+(
+super
+.
+disciplina
+,
+super
+.
+ano
+);
+@override
+void
+matricular
+(
+Aluno
+aluno
+) {
+super
+.
+matricular
+(
+aluno
+);
+notas[
+aluno
+]
+=
+[];
+}
+double
+media
+(
+Aluno
+aluno
+) {
+double
+media
+=
+0
+;
+for
+(
+double
+nota
+in
+notas[
+aluno
+]
+!
+) {
+media
++=
+nota;
+}
+media
+/=
+notas.length;
+return
+media;
+}
+}
+void
+main
+() {
+test
+(
+&#x27;Testar matrícula de alunos&#x27;
+, () {
+Disciplina
+disciplina1
+=
+Disciplina
+(
+&#x27;Flutter&#x27;
+);
+Historico
+historico1
+=
+Historico
+(disciplina1,
+2023
+);
+// Cadastrar primeiro aluno sem erros
+Aluno
+aluno1
+=
+Aluno
+(
+&#x27;Maria&#x27;
+,
+2023
+);
+aluno1.id
+=
+1
+;
+historico1.
+matricular
+(aluno1);
+expect
+(historico1.
+media
+(aluno1),
+0.0
+);
+// Cadastrar segundo aluno com erros
+Aluno
+aluno2
+=
+Aluno
+(
+&#x27;Paula&#x27;
+,
+2022
+);
+try
+{
+aluno2.id
+=
+0
+;
+}
+catch
+(error) {
+expect
+(error,
+isA
+&lt;
+ArgumentError
+&gt;());
+}
+try
+{
+historico1.
+matricular
+(aluno2);
+}
+catch
+(error) {
+expect
+(error,
+isA
+&lt;
+ArgumentError
+&gt;());
+}
+});
+}
+5 - Crie uma classe e um objeto Professor
+Altere a classe Turma para ter um atributo do tipo Professor (Pessoa).
+...
+class
+Professor
+extends
+Pessoa
+{
+...
+}
+...
+Turma
+(
+this
+.disciplina,
+this
+.professor,
+int
+ano
+) {
+...
+6 - Altere a classe Histórico para verificar aprovação
+Caso o aluno (parâmetro do método) tiver média superior a seis, ele estará aprovado.
+...
+class
+Historico
+extends
+Turma
+{
+...
+bool
+isAprovado
+(
+Aluno
+aluno
+) {
+...
+7 - Modifique os testes para suportar essas alterações
+8 -
+Submeta
+a branch para o servidor
+git add .
+git commit -m “Semana 5”
+git push origin semana5
+9 - Faça os testes do código
+10 - Envie o link da branch para avaliação
+https://github.com/walberbeltrame/FlutterApp/tree/semana5</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>💻 Código-Fonte Auditado da Branch <code>semana5</code> (<code>test/obj_test.dart</code> — 11 Testes Unitários Passando)</h2>
+      <p>Implementa <code>Pessoa</code>, <code>mixin Ano</code>, <code>Aluno</code>, <code>Professor</code>, <code>Disciplina</code>, <code>Turma</code> e <code>Historico</code> (com validação de notas finitas <code>0..10</code>, cálculo de média da lista de notas do aluno e aprovação <code>media &gt; 6</code>):</p>
+      <pre><code>import &#x27;package:flutter_test/flutter_test.dart&#x27;;
+
+abstract class Pessoa {
+  late int _id;
+  final String nome;
+  Pessoa(this.nome);
+  int get id =&gt; _id;
+  set id(int id) {
+    if (id &lt;= 0) throw ArgumentError(&#x27;Identificador deve ser positivo.&#x27;);
+    _id = id;
+  }
+}
+
+mixin Ano {
+  late int _ano;
+  int get ano =&gt; _ano;
+  set ano(int ano) {
+    if (ano &lt;= 0) throw ArgumentError(&#x27;Ano deve ser positivo.&#x27;);
+    _ano = ano;
+  }
+}
+
+class Aluno extends Pessoa with Ano {
+  Aluno(super.nome, int ano) { this.ano = ano; }
+}
+
+class Professor extends Pessoa { Professor(super.nome); }
+
+class Disciplina { final String nome; Disciplina(this.nome); }
+
+class Turma with Ano {
+  final Disciplina disciplina;
+  final Professor professor;
+  final List&lt;Aluno&gt; _alunos = [];
+
+  Turma(this.disciplina, this.professor, int ano) { this.ano = ano; }
+
+  void matricular(Aluno aluno) {
+    if (aluno.ano != ano) {
+      throw ArgumentError(&#x27;O ano do aluno deve ser igual ao ano da turma.&#x27;);
+    }
+    if (_alunos.contains(aluno)) {
+      throw ArgumentError(&#x27;Aluno já está matriculado nesta turma.&#x27;);
+    }
+    _alunos.add(aluno);
+  }
+}
+
+class Historico extends Turma {
+  final Map&lt;Aluno, List&lt;double&gt;&gt; notas = {};
+  Historico(super.disciplina, super.professor, super.ano);
+
+  @override
+  void matricular(Aluno aluno) {
+    super.matricular(aluno);
+    notas[aluno] = [];
+  }
+
+  void adicionarNota(Aluno aluno, double nota) {
+    if (!notas.containsKey(aluno)) {
+      throw ArgumentError(&#x27;Aluno não está matriculado nesta turma.&#x27;);
+    }
+    if (!nota.isFinite || nota &lt; 0 || nota &gt; 10) {
+      throw ArgumentError(
+        &#x27;A nota deve ser finita e estar entre 0 e 10.&#x27;,
+      );
+    }
+    notas[aluno]!.add(nota);
+  }
+
+  double media(Aluno aluno) {
+    final listaNotas = notas[aluno];
+    if (listaNotas == null || listaNotas.isEmpty) return 0.0;
+    return listaNotas.reduce((soma, nota) =&gt; soma + nota) / listaNotas.length;
+  }
+
+  bool isAprovado(Aluno aluno) =&gt; media(aluno) &gt; 6;
+}
+
+void main() {
+  group(&#x27;Atividade 8 — Semana 5: Orientação a Objetos&#x27;, () {
+    late Historico historico;
+    setUp(() {
+      historico = Historico(Disciplina(&#x27;Flutter&#x27;), Professor(&#x27;Edilson Luiz Nascimento&#x27;), 2026);
+    });
+
+    test(&#x27;matricula aluno e registra identificador&#x27;, () {
+      final aluno = Aluno(&#x27;Maria&#x27;, 2026)..id = 1;
+      historico.matricular(aluno);
+      expect(aluno.id, 1);
+      expect(historico.media(aluno), 0.0);
+      expect(historico.isAprovado(aluno), false);
+    });
+    test(&#x27;rejeita identificador inválido&#x27;, () {
+      final aluno = Aluno(&#x27;Paula&#x27;, 2026);
+      expect(() =&gt; aluno.id = 0, throwsA(isA&lt;ArgumentError&gt;()));
+    });
+    test(&#x27;rejeita ano inválido&#x27;, () {
+      expect(() =&gt; Aluno(&#x27;Pedro&#x27;, 0), throwsA(isA&lt;ArgumentError&gt;()));
+    });
+    test(&#x27;rejeita matrícula em turma de outro ano&#x27;, () {
+      expect(() =&gt; historico.matricular(Aluno(&#x27;Ana&#x27;, 2025)), throwsA(isA&lt;ArgumentError&gt;()));
+    });
+    test(&#x27;rejeita matrícula duplicada&#x27;, () {
+      final aluno = Aluno(&#x27;Ana&#x27;, 2026);
+      historico.matricular(aluno);
+      expect(() =&gt; historico.matricular(aluno), throwsA(isA&lt;ArgumentError&gt;()));
+    });
+    test(&#x27;calcula média das notas&#x27;, () {
+      final aluno = Aluno(&#x27;Maria&#x27;, 2026);
+      historico.matricular(aluno);
+      historico.adicionarNota(aluno, 8.0);
+      historico.adicionarNota(aluno, 7.0);
+      expect(historico.media(aluno), 7.5);
+    });
+    test(&#x27;aprova média acima de seis&#x27;, () {
+      final aluno = Aluno(&#x27;Maria&#x27;, 2026);
+      historico.matricular(aluno);
+      historico.adicionarNota(aluno, 8.0);
+      historico.adicionarNota(aluno, 7.0);
+      expect(historico.isAprovado(aluno), true);
+    });
+    test(&#x27;não aprova média igual a seis&#x27;, () {
+      final aluno = Aluno(&#x27;Paula&#x27;, 2026);
+      historico.matricular(aluno);
+      historico.adicionarNota(aluno, 6.0);
+      historico.adicionarNota(aluno, 6.0);
+      expect(historico.isAprovado(aluno), false);
+    });
+    test(&#x27;rejeita nota fora do intervalo de zero a dez&#x27;, () {
+      final aluno = Aluno(&#x27;Carlos&#x27;, 2026);
+      historico.matricular(aluno);
+      expect(() =&gt; historico.adicionarNota(aluno, -1), throwsA(isA&lt;ArgumentError&gt;()));
+      expect(() =&gt; historico.adicionarNota(aluno, 11), throwsA(isA&lt;ArgumentError&gt;()));
+    });
+    test(&#x27;rejeita nota para aluno não matriculado&#x27;, () {
+      expect(() =&gt; historico.adicionarNota(Aluno(&#x27;Rita&#x27;, 2026), 8), throwsA(isA&lt;ArgumentError&gt;()));
+    });
+    test(&#x27;rejeita valores especiais como NaN, infinito positivo e infinito negativo&#x27;, () {
+      final aluno = Aluno(&#x27;Carlos&#x27;, 2026);
+      historico.matricular(aluno);
+      expect(() =&gt; historico.adicionarNota(aluno, double.nan), throwsA(isA&lt;ArgumentError&gt;()));
+      expect(() =&gt; historico.adicionarNota(aluno, double.infinity), throwsA(isA&lt;ArgumentError&gt;()));
+      expect(() =&gt; historico.adicionarNota(aluno, double.negativeInfinity), throwsA(isA&lt;ArgumentError&gt;()));
+    });
+  });
+}
+</code></pre>
+    </div>
+    
+    <footer>
+      Portal HTML Acadêmico Integrado · Gerado e auditado em 02/11/2026 19:40:57 · Repositórios: <code>ANTONIA-GRACIELA-UESB-ENTREGAS</code>, <code>FirebaseApp</code> e <code>FlutterApp</code>.
+    </footer>
+  </main>
+</body>
+</html>

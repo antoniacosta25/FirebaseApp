@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Revisão Completa dos Questionários (31 Questões — A2, A5 e A10) — Desenvolvimento Mobile I (UESB)</title>
+  <style>
+:root {
+  --bg: #0b1020;
+  --bg-card: #131b31;
+  --bg-card-alt: #182340;
+  --text: #eef2ff;
+  --muted: #94a3b8;
+  --primary: #38bdf8;
+  --secondary: #818cf8;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --border: #26355ca8;
+  --code-bg: #070b16;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  padding-bottom: 60px;
+}
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+header.top-hero {
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 55%, #0c4a6e 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 28px 24px;
+}
+.container { max-width: 1260px; margin: 0 auto; padding: 0 20px; }
+.badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
+  padding: 4px 11px; border-radius: 999px; letter-spacing: 0.04em;
+}
+.badge-primary { background: rgba(56, 189, 248, 0.16); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.35); }
+.badge-success { background: rgba(34, 197, 94, 0.16); color: #86efac; border: 1px solid rgba(34, 197, 94, 0.35); }
+.badge-warning { background: rgba(245, 158, 11, 0.16); color: #fcd34d; border: 1px solid rgba(245, 158, 11, 0.35); }
+.badge-danger  { background: rgba(239, 68, 68, 0.16); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.35); }
+h1 { font-size: 1.85rem; font-weight: 800; margin-bottom: 6px; color: #fff; }
+.subtitle { color: var(--muted); font-size: 0.98rem; }
+nav.navbar {
+  background: #0e1528;
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 50;
+}
+nav.navbar .nav-inner {
+  display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 20px; max-width: 1260px; margin: 0 auto;
+}
+nav.navbar a {
+  padding: 7px 13px; border-radius: 8px; font-size: 0.85rem; font-weight: 600;
+  color: #cbd5e1; background: rgba(255,255,255,0.03); border: 1px solid transparent;
+  transition: all 0.15s;
+}
+nav.navbar a:hover, nav.navbar a.active {
+  color: #fff; background: rgba(56, 189, 248, 0.16); border-color: rgba(56, 189, 248, 0.45);
+  text-decoration: none;
+}
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 18px; margin-top: 20px; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 20px; }
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+}
+.card h2 { font-size: 1.28rem; margin-bottom: 12px; color: #f8fafc; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.card h3 { font-size: 1.06rem; margin: 14px 0 8px; color: #7dd3fc; }
+.card p, .card li { color: #dbeafe; font-size: 0.94rem; }
+.card ul, .card ol { padding-left: 20px; margin: 8px 0; }
+.card li { margin-bottom: 5px; }
+table.data-table {
+  width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.88rem;
+}
+table.data-table th, table.data-table td {
+  border: 1px solid var(--border); padding: 9px 11px; text-align: left; vertical-align: top;
+}
+table.data-table th { background: var(--bg-card-alt); color: #93c5fd; font-weight: 700; }
+table.data-table tr:nth-child(even) { background: rgba(255,255,255,0.015); }
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  overflow-x: auto;
+  font-family: 'Cascadia Code', Consolas, monospace;
+  font-size: 0.84rem;
+  color: #e2e8f0;
+  margin-top: 10px;
+  white-space: pre-wrap;
+}
+code {
+  font-family: 'Cascadia Code', Consolas, monospace;
+  background: rgba(56, 189, 248, 0.12);
+  color: #7dd3fc;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+pre code { background: none; padding: 0; color: inherit; }
+.alert {
+  border-left: 4px solid var(--primary);
+  background: rgba(56, 189, 248, 0.08);
+  padding: 13px 16px;
+  border-radius: 0 8px 8px 0;
+  margin: 14px 0;
+  font-size: 0.92rem;
+}
+.alert-warn { border-left-color: var(--warning); background: rgba(245, 158, 11, 0.1); }
+.alert-ok   { border-left-color: var(--success); background: rgba(34, 197, 94, 0.1); }
+.alert-err  { border-left-color: var(--danger); background: rgba(239, 68, 68, 0.1); }
+.btn-link {
+  display: inline-block; margin-top: 8px; margin-right: 8px;
+  padding: 7px 13px; border-radius: 7px; font-weight: 600; font-size: 0.84rem;
+  background: rgba(56, 189, 248, 0.16); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.4);
+}
+.btn-link:hover { background: rgba(56, 189, 248, 0.28); text-decoration: none; }
+footer {
+  margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--border);
+  text-align: center; color: var(--muted); font-size: 0.84rem;
+}
+</style>
+</head>
+<body>
+  <header class="top-hero">
+    <div class="container">
+      <div class="badge-row">
+        <span class="badge badge-primary">UESB · Licenciatura em Computação / ADS · 2026.2</span>
+        <span class="badge badge-success">Moodle ID 1094 · 100% Sincronizado (52 Arquivos)</span>
+        <span class="badge badge-warning">Estudante: Antônia Graciela Silva Costa Silva</span>
+      </div>
+      <h1>Revisão Completa dos Questionários (31 Questões — A2, A5 e A10)</h1>
+      <p class="subtitle">Disciplina: <strong>Desenvolvimento Mobile I (60h)</strong> · Docente: <strong>Prof. Dr. Edilson Luiz do Nascimento</strong> · Mediador: <strong>Dárcio Rocha</strong> · Polo Macaúbas</p>
+    </div>
+  </header>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="">🏠 Painel & Notas</a>
+<a href="semana-1.html" class="">Semana 1 (A1–A3)</a>
+<a href="semana-2.html" class="">Semana 2 (A4)</a>
+<a href="semana-3.html" class="">Semana 3 (A5–A6)</a>
+<a href="semana-4.html" class="">Semana 4 (A7)</a>
+<a href="semana-5-atividade-8.html" class="">Semana 5 (A8 — OO)</a>
+<a href="semana-6-atividade-9-10.html" class="">Semana 6 (A9–A10 — Async)</a>
+<a href="revisao-questionarios.html" class="active">📝 31 Questões (A2, A5, A10)</a>
+<a href="glossario-mobile.html" class="">📖 Glossário A–Z</a>
+<a href="acervo-sincronizado-moodle.html" class="">📦 Acervo 52 Arquivos</a>
+    </div>
+  </nav>
+  <main class="container">
+    
+        <div class="card" id="a2">
+          <h2>1. Revisão Completa — Atividade Avaliativa 2 (Semana 1 — id=29915, Tentativa #33656)</h2>
+          <p class="subtitle">Enviada em 27/08/2026 às 13:06 · Nota Final: 10,00 / 10,00 (100%)</p>
+          
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 1</span>
+                <span class="badge badge-success">Correto</span>
+                <span class="badge badge-warning">Atingiu 1.00 de 1.00</span>
+              </div>
+              <p><strong>Enunciado:</strong> Uma plataforma de desenvolvimento para computação móvel é um conjunto de ferramentas, bibliotecas e ambientes de execução que permite aos desenvolvedores criar aplicativos para dispositivos móveis. Sobre esse assunto, marque a alternativa correta.</p>
+              <ul><li style=''>☐ a. O Visual Studio (Microsoft) é Uma IDE especíﬁca somente para desenvolvimento Python, oferecendo recursos robustos para programadores Python.</li><li style=''>☐ b. IntelliJ IDEA (JetBrains) é uma IDE exclusiva para desenvolvimento iOS, macOS e watchOS. É essencial para criar aplicativos para dispositivos Apple.</li><li style=''>☐ c. Bubble é uma plataforma de desenvolvimento de código aberto amplamente utilizada para Java, mas também suporta outras linguagens por meio de plugins.</li><li style=''>☐ d. Appian é uma solução da Microsoft que permite criar aplicativos com facilidade, oferecendo integração nativa com outras ferramentas Microsoft, como oOffice 365.</li><li style='font-weight:700;color:#86efac;'>☑ e. Kodular é uma plataforma de desenvolvimento no code que permite criar aplicativos móveis Android sem a necessidade de habilidades de codificação. Alternativa correta.</li></ul>
+              <div class="alert alert-ok" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback A resposta correta é: Kodular é uma plataforma de desenvolvimento no code que permite criar aplicativos móveis Android sem a necessidade de habilidades de codificação.
+              </div>
+            </div>
+            
+        </div>
+        
+        <div class="card" id="a5">
+          <h2>2. Revisão Completa — Atividade Avaliativa 5 (Semana 3 — id=30524, Tentativa #33828)</h2>
+          <p class="subtitle">Capítulos II e III de Dart · Enviada em 10/09/2026 às 08:49 · Nota Final: 8,50 / 10,00 (17 de 20 questões corretas)</p>
+          
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 1</span>
+                <span class="badge badge-success">Correto</span>
+                <span class="badge badge-warning">Atingiu 1.00 de 1.00</span>
+              </div>
+              <p><strong>Enunciado:</strong> No Dart, estruturas de controle condicionais como o if aceitam conversão implícita de outros tipos para booleano, permitindo que números como 0 e 1, ou strings como &quot;true&quot; e &quot;false&quot;, sejam avaliados diretamente como condições lógicas.</p>
+              <ul><li style=''>☐ Verdadeiro</li><li style='font-weight:700;color:#86efac;'>☑ Falso</li></ul>
+              <div class="alert alert-ok" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback A resposta correta é &#x27;Falso&#x27;.
+              </div>
+            </div>
+            
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 2</span>
+                <span class="badge badge-success">Correto</span>
+                <span class="badge badge-warning">Atingiu 1.00 de 1.00</span>
+              </div>
+              <p><strong>Enunciado:</strong> Diferente do Java, que possui tipos primitivos e tipos de objetos (como int e Integer), no Dart todos os tipos de dados existentes na linguagem são representados como objetos.</p>
+              <ul><li style='font-weight:700;color:#86efac;'>☑ Verdadeiro</li><li style=''>☐ Falso</li></ul>
+              <div class="alert alert-ok" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback A resposta correta é &#x27;Verdadeiro&#x27;.
+              </div>
+            </div>
+            
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 3</span>
+                <span class="badge badge-success">Correto</span>
+                <span class="badge badge-warning">Atingiu 1.00 de 1.00</span>
+              </div>
+              <p><strong>Enunciado:</strong> Considere o seguinte trecho de código em Dart: &quot;num a = 42.5; print((a as int).bitLength);&quot;. O que acontece ao executar esse código?</p>
+              <ul><li style=''>☐ a. O compilador gera um erro de compilação estático apontando que a classe num não suporta o operador as.</li><li style='font-weight:700;color:#86efac;'>☑ b. Uma exceção de tipo (TypeError) é lançada em tempo de execução porque double não é um subtipo de int.</li><li style=''>☐ c. O valor de a é automaticamente arredondado para o inteiro 42 pelo processo de coerção implícita.</li><li style=''>☐ d. O programa é executado e imprime com sucesso o número 6 correspondente à propriedade bitLength do valor convertido.</li></ul>
+              <div class="alert alert-ok" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback A resposta correta é: Uma exceção de tipo (TypeError) é lançada em tempo de execução porque double não é um subtipo de int.
+              </div>
+            </div>
+            
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 4</span>
+                <span class="badge badge-success">Correto</span>
+                <span class="badge badge-warning">Atingiu 1.00 de 1.00</span>
+              </div>
+              <p><strong>Enunciado:</strong> Considere a diferença de comportamento ao declarar uma variável usando dynamic ou Object em Dart: I - A declaração dynamic desabilita as checagens de tipos estáticos pelo compilador, permitindo a chamada de métodos inexistentes no objeto, os quais só falharão em tempo de execução. II - A declaração Object aceita qualquer objeto na linguagem, mas mantém a checagem estática ativa, impedindo a chamada direta de operadores ou métodos não definidos na classe Object. III - Tanto dynamic quanto Object desabilitam igualmente o analisador estático (dartanalyzer) e diferem apenas na forma de conversão implícita realizada em tempo de compilação. Somente estão corretas:</p>
+              <ul><li style='font-weight:700;color:#86efac;'>☑ a. Somente I, II;</li><li style=''>☐ b. Somente II, III;</li><li style=''>☐ c. Somente I;</li><li style=''>☐ d. Somente III;</li><li style=''>☐ e. Todas as opções estão corretas;</li></ul>
+              <div class="alert alert-ok" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback A resposta correta é: Somente I, II;
+              </div>
+            </div>
+            
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 5</span>
+                <span class="badge badge-danger">Incorreto</span>
+                <span class="badge badge-warning">Atingiu 0.00 de 1.00</span>
+              </div>
+              <p><strong>Enunciado:</strong> Em Dart, o operador == (diferente de outras linguagens, como Java) valida o conteúdo do objeto em si e não a sua referência de memória.</p>
+              <ul><li style=''>☐ Verdadeiro</li><li style='font-weight:700;color:#86efac;'>☑ Falso</li></ul>
+              <div class="alert alert-err" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback A resposta correta é &#x27;Verdadeiro&#x27;.
+              </div>
+            </div>
+            
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 6</span>
+                <span class="badge badge-success">Correto</span>
+                <span class="badge badge-warning">Atingiu 1.00 de 1.00</span>
+              </div>
+              <p><strong>Enunciado:</strong> Qual é a diferença fundamental no comportamento das palavras reservadas final e const ao declarar constantes em Dart?</p>
+              <ul><li style=''>☐ a. A palavra final é aplicada apenas para tipos numéricos e booleanos, enquanto const pode ser usada em qualquer objeto da linguagem.</li><li style=''>☐ b. Variáveis declaradas com final podem ter sua referência de memória reatribuída se forem do tipo dynamic, ao contrário de const.</li><li style=''>☐ c. Uma constante final torna todo o objeto e seus membros internos estritamente imutáveis em cascata, enquanto const permite alterar valores internos de listas.</li><li style='font-weight:700;color:#86efac;'>☑ d. Uma constante const é avaliada e criada em tempo de compilação, enquanto uma constante final é criada em tempo de execução, na primeira vez em que for utilizada.</li></ul>
+              <div class="alert alert-ok" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback A resposta correta é: Uma constante const é avaliada e criada em tempo de compilação, enquanto uma constante final é criada em tempo de execução, na primeira vez em que for utilizada.
+              </div>
+            </div>
+            
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 7</span>
+                <span class="badge badge-success">Correto</span>
+                <span class="badge badge-warning">Atingiu 1.00 de 1.00</span>
+              </div>
+              <p><strong>Enunciado:</strong> Considere a utilização de operadores de incremento e decremento em Dart: I - No código &quot;var b = 1 + ++a;&quot;, se a for originalmente 0, o valor final de b será 2, pois o operador prefixado modifica o valor de a antes de ele ser usado na expressão. II - No código &quot;var b = 1 + a++;&quot;, se a for originalmente 0, o valor final de b será 1, pois o operador pós-fixado modifica o valor de a após o uso do seu valor original na expressão. III - Os operadores ++ e --, quando aplicados a variáveis do tipo int, promovem automaticamente a tipagem estática dessas variáveis para o tipo double. Somente estão corretas:</p>
+              <ul><li style='font-weight:700;color:#86efac;'>☑ a. Somente I, II;</li><li style=''>☐ b. Somente I;</li><li style=''>☐ c. Somente II, III;</li><li style=''>☐ d. Todas as opções estão corretas;</li><li style=''>☐ e. Somente III;</li></ul>
+              <div class="alert alert-ok" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback A resposta correta é: Somente I, II;
+              </div>
+            </div>
+            
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 8</span>
+                <span class="badge badge-success">Correto</span>
+                <span class="badge badge-warning">Atingiu 1.00 de 1.00</span>
+              </div>
+              <p><strong>Enunciado:</strong> Ao contrário do operador de deslocamento de bits para a direita tradicional (&gt;&gt;), como o operador de deslocamento de bits à direita unsigned (&gt;&gt;&gt;) se comporta ao lidar com números inteiros negativos em Dart?</p>
+              <ul><li style=''>☐ a. Ele preserva e mantém intacto o bit de sinal negativo, dividindo o valor decimal resultante por potências de 2.</li><li style=''>☐ b. Ele inverte automaticamente o sinal binário transformando o número em double e lançando uma exceção de runtime.</li><li style='font-weight:700;color:#86efac;'>☑ c. Ele desloca o bit que contém o sinal e o substitui por 0, fazendo com que o resultado da operação seja sempre um valor positivo.</li><li style=''>☐ d. Ele gera um erro em tempo de compilação, pois operações de deslocamento de bits à direita unsigned são restritas a valores estritamente positivos.</li></ul>
+              <div class="alert alert-ok" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback A resposta correta é: Ele desloca o bit que contém o sinal e o substitui por 0, fazendo com que o resultado da operação seja sempre um valor positivo.
+              </div>
+            </div>
+            
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 9</span>
+                <span class="badge badge-success">Correto</span>
+                <span class="badge badge-warning">Atingiu 1.00 de 1.00</span>
+              </div>
+              <p><strong>Enunciado:</strong> Qual é o operador aritmético correto em Dart utilizado para realizar uma divisão que retorna especificamente e apenas a parte inteira do resultado?</p>
+              <ul><li style=''>☐ a. ~/=</li><li style='font-weight:700;color:#86efac;'>☑ b. ~/</li><li style=''>☐ c. /</li><li style=''>☐ d. %</li></ul>
+              <div class="alert alert-ok" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback A resposta correta é: ~/
+              </div>
+            </div>
+            
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 10</span>
+                <span class="badge badge-success">Correto</span>
+                <span class="badge badge-warning">Atingiu 1.00 de 1.00</span>
+              </div>
+              <p><strong>Enunciado:</strong> Em relação ao switch case e aos patterns introduzidos a partir do Dart 3.0, analise as proposições abaixo: I - Um bloco switch case pode utilizar patterns relacionais (como &quot;case &gt; 6 &amp;&amp; &lt;= 8:&quot;) e lógicos para comparar intervalos de valores. II - A palavra-chave when funciona como uma guard clause (cláusula de guarda), fornecendo uma validação booleana extra após a correspondência de um pattern ser estabelecida. III - Em um switch expression, a cláusula case é omitida, a correspondência usa a seta =&gt; no lugar de dois-pontos, e a cláusula default é substituída pelo wildcard _ (underline). Somente estão corretas:</p>
+              <ul><li style='font-weight:700;color:#86efac;'>☑ a. Todas as opções estão corretas</li><li style=''>☐ b. Somente II, III;</li><li style=''>☐ c. Somente I, II;</li><li style=''>☐ d. Somente III;</li><li style=''>☐ e. Somente I;</li></ul>
+              <div class="alert alert-ok" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback A resposta correta é: Todas as opções estão corretas
+              </div>
+            </div>
+            
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 11</span>
+                <span class="badge badge-success">Correto</span>
+                <span class="badge badge-warning">Atingiu 1.00 de 1.00</span>
+              </div>
+              <p><strong>Enunciado:</strong> Os operadores de manipulação de bits em Dart (como &amp;, |, ^, ~) realizam operações a nível binário e exigem que os valores manipulados sejam sempre números inteiros.</p>
+              <ul><li style='font-weight:700;color:#86efac;'>☑ Verdadeiro</li><li style=''>☐ Falso</li></ul>
+              <div class="alert alert-ok" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback A resposta correta é &#x27;Verdadeiro&#x27;.
+              </div>
+            </div>
+            
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 12</span>
+                <span class="badge badge-danger">Incorreto</span>
+                <span class="badge badge-warning">Atingiu 0.00 de 1.00</span>
+              </div>
+              <p><strong>Enunciado:</strong> Com a implementação do sound null safety em Dart, avalie as seguintes afirmações sobre a estrutura hierárquica dos tipos de dados: I - O tipo Object? passa a ser o novo top type (superclasse absoluta de toda a hierarquia), representando a união de Object e Null. II - O tipo Null foi removido do bottom type de todos os tipos para impedir que valores nulos vazem de forma insegura por toda a cadeia de tipos. III - O tipo especial Never foi introduzido como o novo bottom type (subtipo de todas as classes), representando uma expressão que nunca finaliza com sucesso. Somente estão corretas:</p>
+              <ul><li style=''>☐ a. Todas as opções estão corretas</li><li style=''>☐ b. Somente I, II;</li><li style='font-weight:700;color:#86efac;'>☑ c. Somente II, III;</li><li style=''>☐ d. Somente III;</li><li style=''>☐ e. Somente I;</li></ul>
+              <div class="alert alert-err" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback A resposta correta é: Todas as opções estão corretas
+              </div>
+            </div>
+            
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 13</span>
+                <span class="badge badge-success">Correto</span>
+                <span class="badge badge-warning">Atingiu 1.00 de 1.00</span>
+              </div>
+              <p><strong>Enunciado:</strong> As strings em Dart são imutáveis e o compilador otimiza o uso da memória reaproveitando variáveis que possuam a mesma sequência de códigos UTF-16, fazendo com que a função identical() retorne true para instâncias literais iguais.</p>
+              <ul><li style='font-weight:700;color:#86efac;'>☑ Verdadeiro</li><li style=''>☐ Falso</li></ul>
+              <div class="alert alert-ok" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback A resposta correta é &#x27;Verdadeiro&#x27;.
+              </div>
+            </div>
+            
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 14</span>
+                <span class="badge badge-success">Correto</span>
+                <span class="badge badge-warning">Atingiu 1.00 de 1.00</span>
+              </div>
+              <p><strong>Enunciado:</strong> O mecanismo de Flow Analysis do Dart promove automaticamente variáveis de tipos nullable para non-nullable com a mesma eficácia, independentemente de a variável ser local ou de ser uma propriedade de classe ou variável global.</p>
+              <ul><li style=''>☐ Verdadeiro</li><li style='font-weight:700;color:#86efac;'>☑ Falso</li></ul>
+              <div class="alert alert-ok" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback A resposta correta é &#x27;Falso&#x27;.
+              </div>
+            </div>
+            
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 15</span>
+                <span class="badge badge-danger">Incorreto</span>
+                <span class="badge badge-warning">Atingiu 0.00 de 1.00</span>
+              </div>
+              <p><strong>Enunciado:</strong> Sobre o uso do modificador static em Dart, avalie as seguintes asserções: I - Variáveis estáticas pertencem diretamente à classe e são compartilhadas igualmente por todas as instâncias daquela classe. II - É permitido declarar uma variável static de escopo global (fora de qualquer classe), funcionando como um atalho de memória. III - O modificador static deve ser utilizado em associação com palavras reservadas como var, dynamic, final ou const. Somente estão corretas:</p>
+              <ul><li style=''>☐ a. Todas as opções estão corretas;</li><li style=''>☐ b. Somente II, III;</li><li style=''>☐ c. Somente III;</li><li style=''>☐ d. Somente I, III;</li><li style='font-weight:700;color:#86efac;'>☑ e. Somente I;</li><li style=''>☐ f. Somente I, II;</li></ul>
+              <div class="alert alert-err" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback A resposta correta é: Somente I, III;
+              </div>
+            </div>
+            
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 16</span>
+                <span class="badge badge-success">Correto</span>
+                <span class="badge badge-warning">Atingiu 1.00 de 1.00</span>
+              </div>
+              <p><strong>Enunciado:</strong> No sistema de tipagem de Dart, como o tipo especial dynamic funciona em tempo de compilação e execução?</p>
+              <ul><li style=''>☐ a. Funciona como o supertipo de todas as classes na hierarquia do Dart, mantendo a validação estática de tipos estrita e emitindo erros se os tipos forem incompatíveis.</li><li style=''>☐ b. Permite que a variável mude de tipo apenas entre int e double, mantendo as demais validações estáticas do analisador ativas.</li><li style='font-weight:700;color:#86efac;'>☑ c. Funciona como um mecanismo que desabilita todas as validações estáticas de tipo para aquela variável, permitindo chamar métodos inexistentes que causarão erros apenas em tempo de execução.</li><li style=''>☐ d. Garante o soundness de forma que o compilador realize a inferência estática e otimize o código para compilação AoT (Ahead-of-Time).</li></ul>
+              <div class="alert alert-ok" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback A resposta correta é: Funciona como um mecanismo que desabilita todas as validações estáticas de tipo para aquela variável, permitindo chamar métodos inexistentes que causarão erros apenas em tempo de execução.
+              </div>
+            </div>
+            
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 17</span>
+                <span class="badge badge-success">Correto</span>
+                <span class="badge badge-warning">Atingiu 1.00 de 1.00</span>
+              </div>
+              <p><strong>Enunciado:</strong> Como boa prática recomendada, ao declarar uma variável nullable em Dart, deve-se sempre inicializá-la explicitamente com o valor null (por exemplo, &quot;String? x = null;&quot;) para evitar erros de compilação.</p>
+              <ul><li style=''>☐ Verdadeiro</li><li style='font-weight:700;color:#86efac;'>☑ Falso</li></ul>
+              <div class="alert alert-ok" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback A resposta correta é &#x27;Falso&#x27;.
+              </div>
+            </div>
+            
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 18</span>
+                <span class="badge badge-success">Correto</span>
+                <span class="badge badge-warning">Atingiu 1.00 de 1.00</span>
+              </div>
+              <p><strong>Enunciado:</strong> Analise as seguintes afirmações sobre os operadores de nulidade em Dart: I - O operador ?. permite o acesso seguro a propriedades e métodos de um objeto que pode ser nulo; se o objeto for nulo, a expressão resulta em Null sem lançar erro. II - O operador ??= atribui o valor à direita à variável à esquerda se, e somente se, a variável à esquerda for nula. III - O operador cascade nulo ?.. faz com que, se o objeto de origem for nulo, todas as chamadas subsequentes em cascata retornem null, evitando o lançamento de exceções. Somente estão corretas:</p>
+              <ul><li style=''>☐ a. Somente I;</li><li style=''>☐ b. Somente II, III;</li><li style=''>☐ c. Somente III;</li><li style=''>☐ d. Somente I, II;</li><li style='font-weight:700;color:#86efac;'>☑ e. Todas as opções estão corretas</li></ul>
+              <div class="alert alert-ok" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback A resposta correta é: Todas as opções estão corretas
+              </div>
+            </div>
+            
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 19</span>
+                <span class="badge badge-success">Correto</span>
+                <span class="badge badge-warning">Atingiu 1.00 de 1.00</span>
+              </div>
+              <p><strong>Enunciado:</strong> Para que serve o modificador late, integrado ao sistema de null safety do Dart?</p>
+              <ul><li style=''>☐ a. Serve para converter em tempo de execução uma variável do tipo nullable para o seu correspondente non-nullable sem risco de exceções.</li><li style=''>☐ b. Indica que a constante é canonicalizada pelo compilador, reutilizando o mesmo endereço de memória na criação de coleções estáticas.</li><li style='font-weight:700;color:#86efac;'>☑ c. Permite declarar uma variável non-nullable (não nula) sem inicialização imediata, avisando ao compilador que a sua inicialização ocorrerá posteriormente antes do primeiro uso.</li><li style=''>☐ d. Permite criar uma variável global estática compartilhada entre as instâncias de diferentes classes sem restrição de escopo.</li></ul>
+              <div class="alert alert-ok" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback A resposta correta é: Permite declarar uma variável non-nullable (não nula) sem inicialização imediata, avisando ao compilador que a sua inicialização ocorrerá posteriormente antes do primeiro uso.
+              </div>
+            </div>
+            
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 20</span>
+                <span class="badge badge-success">Correto</span>
+                <span class="badge badge-warning">Atingiu 1.00 de 1.00</span>
+              </div>
+              <p><strong>Enunciado:</strong> Por que a classe StringBuffer é amplamente recomendada para a criação de strings sob demanda em Dart em cenários que envolvem muitas concatenações?</p>
+              <ul><li style=''>☐ a. O StringBuffer converte os caracteres para codificação UTF-32 e permite usar surrogate pairs sem alocação adicional de memória.</li><li style=''>☐ b. Garante que qualquer string concatenada seja promovida para constante const canonicalizada em tempo de compilação.</li><li style='font-weight:700;color:#86efac;'>☑ c. Como as strings são imutáveis, usar concatenação direta com o operador + cria múltiplas strings intermediárias na memória. O StringBuffer gerencia e une os objetos eficientemente, gerando a string final apenas sob demanda.</li><li style=''>☐ d. Desabilita o fluxo de análise (flow analysis) para variáveis nullable envolvidas na concatenação, facilitando o acesso direto aos seus métodos.</li></ul>
+              <div class="alert alert-ok" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback A resposta correta é: Como as strings são imutáveis, usar concatenação direta com o operador + cria múltiplas strings intermediárias na memória. O StringBuffer gerencia e une os objetos eficientemente, gerando a string final apenas sob demanda.
+              </div>
+            </div>
+            
+        </div>
+        
+        <div class="card" id="a10">
+          <h2>3. Revisão Completa — Atividade Avaliativa 10 (Semana 6 — id=31597, Tentativa #35104)</h2>
+          <p class="subtitle">Programação Assíncrona em Dart · Enviada em 29/10/2026 às 15:00 · Nota Final: 4,50 / 5,00 (9 de 10 questões corretas — 90%)</p>
+          
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 1</span>
+                <span class="badge badge-success">Correto</span>
+                <span class="badge badge-warning">Atingiu 0.50 de 0.50</span>
+              </div>
+              <p><strong>Enunciado:</strong> Considere os conceitos e o roteiro prático de programação assíncrona : I. Future&lt;int&gt; representa uma operação que produzirá um resultado inteiro ou falhará. II. Uma Stream&lt;int&gt; pode emitir vários valores ao longo do tempo. III. No exemplo count() , a instrução yield i permite emitir cada valor da contagem para quem escuta a Stream.</p>
+              <ul><li style=''>☐ A. As afirmações I e III estão corretas.</li><li style=''>☐ B. As afirmações II e III estão corretas.</li><li style=''>☐ C. As afirmações I e II estão corretas.</li><li style='font-weight:700;color:#86efac;'>☑ D. As afirmações I, II e III estão corretas. Resposta correta.</li></ul>
+              <div class="alert alert-ok" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback As três afirmações são verdadeiras. Future representa uma conclusão assíncrona; Stream pode emitir uma sequência de eventos; yield em uma função async* emite valores. A resposta correta é: As afirmações I, II e III estão corretas.
+              </div>
+            </div>
+            
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 2</span>
+                <span class="badge badge-success">Correto</span>
+                <span class="badge badge-warning">Atingiu 0.50 de 0.50</span>
+              </div>
+              <p><strong>Enunciado:</strong> Em Dart, cada Isolate possui seu próprio estado de memória, que não é acessado diretamente por outra Isolate. Essa separação ajuda a evitar problemas típicos de memória compartilhada.</p>
+              <ul><li style='font-weight:700;color:#86efac;'>☑ Verdadeiro</li><li style=''>☐ Falso</li></ul>
+              <div class="alert alert-ok" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback Correto. O capítulo destaca que Isolates mantêm pilhas de memória isoladas, reduzindo a necessidade de locks para dados compartilhados. A resposta correta é &#x27;Verdadeiro&#x27;.
+              </div>
+            </div>
+            
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 3</span>
+                <span class="badge badge-success">Correto</span>
+                <span class="badge badge-warning">Atingiu 0.50 de 0.50</span>
+              </div>
+              <p><strong>Enunciado:</strong> Em programação, concorrência e paralelismo significam necessariamente a mesma coisa: concorrência sempre exige que duas tarefas sejam executadas literalmente ao mesmo tempo, em núcleos diferentes.</p>
+              <ul><li style=''>☐ Verdadeiro</li><li style='font-weight:700;color:#86efac;'>☑ Falso</li></ul>
+              <div class="alert alert-ok" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback Correto. Concorrência trata da organização/progresso de tarefas durante um mesmo intervalo; paralelismo é a execução simultânea efetiva de tarefas. A resposta correta é &#x27;Falso&#x27;.
+              </div>
+            </div>
+            
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 4</span>
+                <span class="badge badge-success">Correto</span>
+                <span class="badge badge-warning">Atingiu 0.50 de 0.50</span>
+              </div>
+              <p><strong>Enunciado:</strong> Considere o trecho em Dart: Future.value(&#x27;início&#x27;) .then((valor) =&gt; Future.error(&#x27;falha&#x27;)) .then((valor) =&gt; print(valor)) .catchError((erro) =&gt; print(&#x27;Erro tratado&#x27;)); O que ocorre, considerando a cadeia de Futures?</p>
+              <ul><li style=''>☐ A. O segundo then imprime &#x27;início&#x27; e o catchError também é executado.</li><li style=''>☐ B. O erro é capturado automaticamente por qualquer bloco try/catch externo, sem necessidade de await.</li><li style='font-weight:700;color:#86efac;'>☑ C. O segundo then não executa seu callback de sucesso; o catchError trata o erro. Resposta correta.</li><li style=''>☐ D. O programa ignora o erro e imprime o valor null.</li></ul>
+              <div class="alert alert-ok" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback Um erro é propagado pela cadeia até ser tratado. Nesse caso, o callback de sucesso do segundo then é ignorado e catchError trata a falha. A resposta correta é: O segundo then não executa seu callback de sucesso; o catchError trata o erro.
+              </div>
+            </div>
+            
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 5</span>
+                <span class="badge badge-success">Correto</span>
+                <span class="badge badge-warning">Atingiu 0.50 de 0.50</span>
+              </div>
+              <p><strong>Enunciado:</strong> Um Future em Dart representa um resultado que já está obrigatoriamente disponível no instante em que o objeto Future é criado.</p>
+              <ul><li style=''>☐ Verdadeiro</li><li style='font-weight:700;color:#86efac;'>☑ Falso</li></ul>
+              <div class="alert alert-ok" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback Correto. Um Future pode estar incompleto e depois ser concluído com um valor ou com um erro. A resposta correta é &#x27;Falso&#x27;.
+              </div>
+            </div>
+            
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 6</span>
+                <span class="badge badge-success">Correto</span>
+                <span class="badge badge-warning">Atingiu 0.50 de 0.50</span>
+              </div>
+              <p><strong>Enunciado:</strong> Analise as afirmações sobre Dart: I. Uma função declarada com async retorna um Future. II. A palavra-chave await permite aguardar a conclusão de uma operação assíncrona dentro de uma função assíncrona. III. Usar await transforma automaticamente toda a aplicação em multithread.</p>
+              <ul><li style=''>☐ A. Apenas a afirmação I está correta.</li><li style=''>☐ B. Apenas a afirmação II está correta.</li><li style=''>☐ C. Apenas a afirmação III está correta.</li><li style=''>☐ D. As afirmações I e III estão corretas.</li><li style='font-weight:700;color:#86efac;'>☑ E. As afirmações I e II estão corretas. Resposta correta.</li></ul>
+              <div class="alert alert-ok" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback I e II são verdadeiras. Async faz a função retornar Future; await aguarda a operação. Await não transforma automaticamente a aplicação em multithread. A resposta correta é: As afirmações I e II estão corretas.
+              </div>
+            </div>
+            
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 7</span>
+                <span class="badge badge-danger">Incorreto</span>
+                <span class="badge badge-warning">Atingiu 0.00 de 0.50</span>
+              </div>
+              <p><strong>Enunciado:</strong> Considere a função search(String key) do roteiro prático, que retorna as notas quando o nome existe no mapa alunos e lança ArgumentError caso contrário. I. A busca por &#x27;Maria&#x27; pode concluir com a lista [8.0, 9.0] . II. A busca por &#x27;Paula&#x27; deve retornar uma lista vazia, pois o nome não está no mapa. III. O erro da busca por um nome inexistente pode ser tratado com catchError .</p>
+              <ul><li style=''>☐ A. As afirmações I, II e III estão corretas.</li><li style='font-weight:700;color:#86efac;'>☑ B. As afirmações I e III estão corretas. Resposta correta.</li><li style=''>☐ C. Apenas a afirmação III está correta.</li><li style=''>☐ D. As afirmações I e II estão corretas.</li><li style=''>☐ E. As afirmações II e III estão corretas.</li></ul>
+              <div class="alert alert-err" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback I e III são verdadeiras. Maria está no mapa e suas notas são retornadas; Paula não está no mapa e a função lança ArgumentError, que pode ser tratado com catchError. A resposta correta é: As afirmações I, II e III estão corretas.
+              </div>
+            </div>
+            
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 8</span>
+                <span class="badge badge-success">Correto</span>
+                <span class="badge badge-warning">Atingiu 0.50 de 0.50</span>
+              </div>
+              <p><strong>Enunciado:</strong> Uma aplicação consulta três serviços usando Future.any([f1, f2, f3]). De acordo com o capítulo, o que esse método retorna?</p>
+              <ul><li style=''>☐ A. Sempre um erro, pois vários Futures não podem ser usados juntos.</li><li style='font-weight:700;color:#86efac;'>☑ B. O resultado do primeiro Future que for concluído, sem esperar pelos demais resultados. Resposta correta.</li><li style=''>☐ C. Uma lista com os resultados dos três Futures.</li><li style=''>☐ D. O resultado do Future que levar mais tempo para terminar.</li></ul>
+              <div class="alert alert-ok" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback Future.any completa com o resultado do primeiro Future que terminar; os demais não são cancelados automaticamente. A resposta correta é: O resultado do primeiro Future que for concluído, sem esperar pelos demais resultados.
+              </div>
+            </div>
+            
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 9</span>
+                <span class="badge badge-success">Correto</span>
+                <span class="badge badge-warning">Atingiu 0.50 de 0.50</span>
+              </div>
+              <p><strong>Enunciado:</strong> Considere o funcionamento do event loop descrito no capítulo. Qual afirmação está correta?</p>
+              <ul><li style=''>☐ A. O event loop executa todas as tarefas de todas as filas simultaneamente.</li><li style=''>☐ B. A função main() só começa depois que as filas são esvaziadas.</li><li style=''>☐ C. A event queue sempre é processada antes da microtask queue.</li><li style='font-weight:700;color:#86efac;'>☑ D. A microtask queue tem prioridade: suas tarefas pendentes são processadas antes das tarefas da event queue. Resposta correta.</li></ul>
+              <div class="alert alert-ok" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback O capítulo explica que, após a execução síncrona inicial de main(), o event loop verifica primeiro a microtask queue. A resposta correta é: A microtask queue tem prioridade: suas tarefas pendentes são processadas antes das tarefas da event queue.
+              </div>
+            </div>
+            
+            <div class="card" style="margin-top:14px;background:#10182d;">
+              <div class="badge-row">
+                <span class="badge badge-primary">Questão 10</span>
+                <span class="badge badge-success">Correto</span>
+                <span class="badge badge-warning">Atingiu 0.50 de 0.50</span>
+              </div>
+              <p><strong>Enunciado:</strong> Em Dart, qual é o comportamento esperado de Future.wait(listaDeFutures) quando todos os Futures são concluídos com sucesso?</p>
+              <ul><li style=''>☐ A. Cancela os Futures mais lentos e retorna o resultado do mais rápido.</li><li style=''>☐ B. Executa os Futures obrigatoriamente um após o outro.</li><li style=''>☐ C. Retorna o resultado do primeiro Future que terminar.</li><li style='font-weight:700;color:#86efac;'>☑ D. Retorna uma lista com os resultados quando todos os Futures terminarem. Resposta correta.</li></ul>
+              <div class="alert alert-ok" style="margin-top:10px;">
+                <strong>Feedback / Gabarito Oficial do Moodle:</strong> Feedback Future.wait aguarda a conclusão de todos os Futures e reúne seus valores em uma lista. A resposta correta é: Retorna uma lista com os resultados quando todos os Futures terminarem.
+              </div>
+            </div>
+            
+        </div>
+        
+    <footer>
+      Portal HTML Acadêmico Integrado · Gerado e auditado em 02/11/2026 19:40:57 · Repositórios: <code>ANTONIA-GRACIELA-UESB-ENTREGAS</code>, <code>FirebaseApp</code> e <code>FlutterApp</code>.
+    </footer>
+  </main>
+</body>
+</html>
