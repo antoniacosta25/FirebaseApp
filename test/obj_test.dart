@@ -97,9 +97,9 @@ class Historico extends Turma {
       );
     }
 
-    if (nota < 0 || nota > 10) {
+    if (!nota.isFinite || nota < 0 || nota > 10) {
       throw ArgumentError(
-        'A nota deve estar entre 0 e 10.',
+        'A nota deve ser finita e estar entre 0 e 10.',
       );
     }
 
@@ -240,6 +240,25 @@ void main() {
 
       expect(
         () => historico.adicionarNota(aluno, 8.0),
+        throwsA(isA<ArgumentError>()),
+      );
+    });
+
+    test('Não aceitar valores especiais como NaN, infinito positivo e infinito negativo', () {
+      Aluno aluno = Aluno('Carlos', 2026);
+
+      historico.matricular(aluno);
+
+      expect(
+        () => historico.adicionarNota(aluno, double.nan),
+        throwsA(isA<ArgumentError>()),
+      );
+      expect(
+        () => historico.adicionarNota(aluno, double.infinity),
+        throwsA(isA<ArgumentError>()),
+      );
+      expect(
+        () => historico.adicionarNota(aluno, double.negativeInfinity),
         throwsA(isA<ArgumentError>()),
       );
     });
