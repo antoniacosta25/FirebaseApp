@@ -6,12 +6,12 @@ const alunos = <String, List<double>>{
 };
 
 Future<int> process() async {
-  await Future<void>.delayed(const Duration(milliseconds: 100));
+  await Future<void>.delayed(const Duration(seconds: 5));
   return 0;
 }
 
 Future<List<double>> search(String nome) async {
-  await Future<void>.delayed(const Duration(milliseconds: 100));
+  await Future<void>.delayed(const Duration(seconds: 2));
   final notas = alunos[nome];
   if (notas == null) {
     throw ArgumentError('Aluno não encontrado: $nome');
@@ -21,7 +21,7 @@ Future<List<double>> search(String nome) async {
 
 Stream<int> count() async* {
   for (var numero = 1; numero <= 3; numero++) {
-    await Future<void>.delayed(const Duration(milliseconds: 100));
+    await Future<void>.delayed(const Duration(seconds: 1));
     yield numero;
   }
 }

@@ -1,38 +1,45 @@
 # Atividade 9 — Semana 6: Programação Assíncrona em Dart
 
-- **Estudante:** Antonia Graciela Silva Costa Silva
-- **Curso:** Análise e Desenvolvimento de Sistemas · 4º semestre
-- **Disciplina:** Desenvolvimento Mobile I · UESB · 2026.2
-- **Docente:** Edilson Luiz do Nascimento
-- **Repositório:** `https://github.com/antoniacosta25/FirebaseApp`
-- **Branch da atividade:** `semana6`
+**Estudante:** Antônia Graciela Silva Costa Silva
+**Curso:** Análise e Desenvolvimento de Sistemas — UESB, 4º semestre
+**Disciplina:** Desenvolvimento Mobile I (2026.2)
+**Docente:** Edilson Luiz do Nascimento
+**Repositório:** `antoniacosta25/FirebaseApp`
+**Branch desta atividade:** `semana6`
 
----
+Este projeto implementa o roteiro prático de Programação Assíncrona da Semana 6. O exercício usa notas em memória para praticar `Future`, `async`/`await`, `Stream`, `async*` e `yield`. O roteiro desta atividade não pede integração com Firebase.
 
-## Escopo da Atividade 9 (Semana 6)
+## Requisitos do roteiro e arquivos
 
-Implementação prática de Programação Assíncrona em Dart conforme o roteiro oficial da Semana 6:
-- `Future<int> process()` com atraso assíncrono (`Future.delayed`) retornando `0`;
-- `Future<List<double>> search(String nome)` consultando mapa em memória (`Maria`, `Bruna`, `Carla`) e lançando `ArgumentError` para nome inexistente (`Paula`);
-- `Stream<int> count() async*` emitindo `1`, `2` e `3` sequencialmente com `yield`;
-- `Stream<double> media(List<String> nomes)` consumindo `search(nome)` de forma assíncrona para emitir as médias na ordem solicitada e propagando `ArgumentError` para aluno ausente sem interromper as emissões subsequentes.
-
-## Estrutura da Branch `semana6`
-
-| Arquivo | Descrição |
+| Requisito | Implementação |
 | --- | --- |
-| `lib/assincrono.dart` | Funções assíncronas `process()`, `search(nome)`, `count()` e `media(nomes)` |
-| `test/async_test.dart` | 6 casos de teste assíncronos (`Future`, `Stream`, `async`/`await` e tratamento de erro) |
-| `docs/semana6/README.md` | Documentação detalhada da Atividade 9 |
-| `lib/main.dart` | Ponto de entrada do pacote da Semana 6 |
-| `pubspec.yaml` | Configuração do pacote Dart/Flutter (`firebase_app`) |
+| Criar a branch `semana6` e o arquivo de testes | `test/async_test.dart` contém os testes da semana. |
+| `process()` retornar `0` após aguardar | `lib/assincrono.dart` implementa `Future<int>` com atraso de 5 segundos. |
+| Consultar as notas de um aluno | `search(nome)` aguarda 2 segundos e retorna as notas de Maria, Bruna ou Carla; nome ausente gera `ArgumentError`. |
+| Contar usando uma Stream | `count()` usa `async*` e `yield`, emitindo 1, 2 e 3 com intervalo de 1 segundo. |
+| Calcular médias de forma assíncrona | `media(nomes)` consulta `search` para cada nome e emite as médias como eventos da Stream. |
+| Exercitar sucesso e erro | Os testes verificam `process`, busca válida e inválida, contagem, médias e a continuidade da Stream após erro de busca. |
 
-## Como executar localmente ou no GitHub Codespaces
+## Arquivos da atividade
+
+- `lib/assincrono.dart` — dados em memória e funções assíncronas.
+- `test/async_test.dart` — 6 testes da Atividade 9.
+- `docs/semana6/README.md` — mapa dos requisitos do roteiro para o código.
+- `lib/main.dart` — ponto de entrada simples do pacote.
+- `pubspec.yaml` — configuração do projeto Flutter/Dart.
+
+## Executar a validação
+
+No diretório do projeto:
 
 ```bash
-git clone -b semana6 https://github.com/antoniacosta25/FirebaseApp.git
-cd FirebaseApp
 flutter pub get
 flutter analyze
 flutter test test/async_test.dart
 ```
+
+**Status dos testes nesta revisão:** ainda não executados. Registre os resultados reais após executar os comandos; este README não afirma que passaram.
+
+## Entrega
+
+O roteiro pede publicar e enviar o link da branch `semana6`. Selecione essa branch no repositório `antoniacosta25/FirebaseApp` e copie o endereço da branch para a tarefa Moodle correspondente. Não use a branch `main` para esta entrega.
