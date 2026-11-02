@@ -1,4 +1,3 @@
-
 import 'package:flutter_test/flutter_test.dart';
 
 abstract class Pessoa {
@@ -62,13 +61,17 @@ class Turma with Ano {
   }
 
   void matricular(Aluno aluno) {
-    if (aluno.ano == ano) {
-      _alunos.add(aluno);
-    } else {
+    if (aluno.ano != ano) {
       throw ArgumentError(
         'O ano do aluno deve ser igual ao ano da turma.',
       );
     }
+    if (_alunos.contains(aluno)) {
+      throw ArgumentError(
+        'Aluno já está matriculado nesta turma.',
+      );
+    }
+    _alunos.add(aluno);
   }
 }
 
@@ -124,24 +127,24 @@ class Historico extends Turma {
 }
 
 void main() {
-  group('Testes da Semana 5', () {
+  group('Atividade 8 — Semana 5: Orientação a Objetos', () {
     late Disciplina disciplina;
     late Professor professor;
     late Historico historico;
 
     setUp(() {
       disciplina = Disciplina('Flutter');
-      professor = Professor('João');
+      professor = Professor('Edilson Luiz do Nascimento');
 
       historico = Historico(
         disciplina,
         professor,
-        2023,
+        2026,
       );
     });
 
     test('Cadastrar aluno e matricular corretamente', () {
-      Aluno aluno = Aluno('Maria', 2023);
+      Aluno aluno = Aluno('Maria', 2026);
       aluno.id = 1;
 
       historico.matricular(aluno);
@@ -152,7 +155,7 @@ void main() {
     });
 
     test('Não permitir identificador inválido', () {
-      Aluno aluno = Aluno('Paula', 2023);
+      Aluno aluno = Aluno('Paula', 2026);
 
       expect(
         () => aluno.id = 0,
@@ -168,7 +171,18 @@ void main() {
     });
 
     test('Não matricular aluno de outro ano', () {
-      Aluno aluno = Aluno('Ana', 2022);
+      Aluno aluno = Aluno('Ana', 2025);
+
+      expect(
+        () => historico.matricular(aluno),
+        throwsA(isA<ArgumentError>()),
+      );
+    });
+
+    test('Não permitir matrícula duplicada na mesma turma', () {
+      Aluno aluno = Aluno('Ana', 2026);
+
+      historico.matricular(aluno);
 
       expect(
         () => historico.matricular(aluno),
@@ -177,7 +191,7 @@ void main() {
     });
 
     test('Calcular média corretamente', () {
-      Aluno aluno = Aluno('Maria', 2023);
+      Aluno aluno = Aluno('Maria', 2026);
 
       historico.matricular(aluno);
       historico.adicionarNota(aluno, 8.0);
@@ -187,7 +201,7 @@ void main() {
     });
 
     test('Aprovar aluno com média superior a seis', () {
-      Aluno aluno = Aluno('Maria', 2023);
+      Aluno aluno = Aluno('Maria', 2026);
 
       historico.matricular(aluno);
       historico.adicionarNota(aluno, 8.0);
@@ -197,7 +211,7 @@ void main() {
     });
 
     test('Reprovar aluno com média igual a seis', () {
-      Aluno aluno = Aluno('Paula', 2023);
+      Aluno aluno = Aluno('Paula', 2026);
 
       historico.matricular(aluno);
       historico.adicionarNota(aluno, 6.0);
@@ -206,13 +220,26 @@ void main() {
       expect(historico.isAprovado(aluno), false);
     });
 
-    test('Não aceitar nota maior que dez', () {
-      Aluno aluno = Aluno('Carlos', 2023);
+    test('Não aceitar nota fora do intervalo de zero a dez', () {
+      Aluno aluno = Aluno('Carlos', 2026);
 
       historico.matricular(aluno);
 
       expect(
+        () => historico.adicionarNota(aluno, -1.0),
+        throwsA(isA<ArgumentError>()),
+      );
+      expect(
         () => historico.adicionarNota(aluno, 11.0),
+        throwsA(isA<ArgumentError>()),
+      );
+    });
+
+    test('Não aceitar nota para aluno não matriculado', () {
+      Aluno aluno = Aluno('Rita', 2026);
+
+      expect(
+        () => historico.adicionarNota(aluno, 8.0),
         throwsA(isA<ArgumentError>()),
       );
     });
