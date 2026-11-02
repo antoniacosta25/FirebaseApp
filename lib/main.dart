@@ -1,3 +1,3 @@
 void main() {
-  print('Atividade Semana 05');
+  print('Atividade Semana 06');
 }
