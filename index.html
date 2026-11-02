@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Atividades de Desenvolvimento Mobile I da UESB, organizadas por plataforma.">
+  <title>Desenvolvimento Mobile I | Atividades</title>
+  <style>
+    :root { color-scheme: light; --ink:#112c30; --muted:#4d6665; --paper:#f7f5ed; --accent:#c85a32; --line:#cdd8cf; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Georgia,serif; color:var(--ink); background:radial-gradient(circle at 90% 0%,#d8e8d8,transparent 36rem),var(--paper); line-height:1.6; }
+    main { width:min(1040px,calc(100% - 40px)); margin:auto; }
+    header { padding:76px 0 48px; border-bottom:1px solid var(--line); }
+    .eyebrow,.number,.tag { font:700 .75rem/1.4 Arial,sans-serif; letter-spacing:.13em; text-transform:uppercase; }
+    .eyebrow { color:var(--accent); } h1 { max-width:800px; font-size:clamp(2.8rem,8vw,6rem); line-height:1; letter-spacing:-.055em; margin:18px 0 24px; }
+    .intro { max-width:650px; font-size:1.2rem; color:var(--muted); }
+    h2 { font-size:2rem; margin:0; letter-spacing:-.03em; } section { padding:52px 0; border-bottom:1px solid var(--line); }
+    .section-header { display:flex; justify-content:space-between; gap:20px; align-items:baseline; margin-bottom:24px; }
+    .tag { color:var(--muted); } .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    article { background:#fffefa; border:1px solid var(--line); padding:24px; display:flex; flex-direction:column; min-height:215px; }
+    .number { color:var(--accent); } h3 { font-size:1.35rem; line-height:1.2; margin:14px 0 8px; } article p { color:var(--muted); margin:0 0 22px; } a { color:#174f4b; text-underline-offset:4px; } article a { margin-top:auto; font-family:Arial,sans-serif; font-weight:700; }
+    .notice { font-family:Arial,sans-serif; font-size:.9rem; color:var(--muted); max-width:740px; } footer { padding:28px 0 50px; font-family:Arial,sans-serif; font-size:.85rem; color:var(--muted); }
+    a:focus-visible { outline:3px solid var(--accent); outline-offset:4px; }
+    @media(max-width:700px){ header{padding-top:48px} .grid{grid-template-columns:1fr} article{min-height:0} .section-header{display:block} }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="eyebrow">UESB / Análise e Desenvolvimento de Sistemas</span>
+    <h1>Desenvolvimento<br>Mobile I<span style="color:var(--accent)">.</span></h1>
+    <p class="intro">Um espaço para reunir as atividades da disciplina, seus materiais e projetos em um só lugar.</p>
+  </header>
+  <section aria-labelledby="plataformas">
+    <div class="section-header"><h2 id="plataformas">Atividades em plataformas</h2><span class="tag">Moodle e ferramentas externas</span></div>
+    <div class="grid">
+      <article><span class="number">Atividade 01</span><h3>Tendências e inovações</h3><p>Atividade interativa sobre desenvolvimento mobile.</p><a href="https://moodle4.uesb.br/mod/hvp/view.php?id=29914">Acessar atividade →</a></article>
+      <article><span class="number">Atividade 02</span><h3>Tendências e inovações</h3><p>Questionário da primeira semana.</p><a href="https://moodle4.uesb.br/mod/quiz/view.php?id=29915">Acessar questionário →</a></article>
+      <article><span class="number">Atividade 03</span><h3>Vocabulário mobile</h3><p>Palavras cruzadas com termos da área.</p><a href="https://moodle4.uesb.br/mod/lti/view.php?id=30639">Acessar atividade →</a></article>
+      <article><span class="number">Atividade 05</span><h3>Fundamentos de Dart</h3><p>Questionário sobre os capítulos II e III.</p><a href="https://moodle4.uesb.br/mod/quiz/view.php?id=30524">Acessar questionário →</a></article>
+      <article><span class="number">Atividade 10</span><h3>Programação assíncrona</h3><p>Questionário sobre conceitos assíncronos.</p><a href="https://moodle4.uesb.br/mod/quiz/view.php?id=31597">Acessar questionário →</a></article>
+    </div>
+  </section>
+  <section aria-labelledby="projetos">
+    <div class="section-header"><h2 id="projetos">Projetos em código</h2><span class="tag">GitHub / Dart</span></div>
+    <div class="grid">
+      <article><span class="number">Atividade 08</span><h3>Orientação a objetos</h3><p>Prática da semana 5 em Dart.</p><a href="https://github.com/antoniacosta25/FirebaseApp/tree/semana5">Ver código →</a></article>
+      <article><span class="number">Atividade 09</span><h3>Programação assíncrona</h3><p>Prática da semana 6 em Dart.</p><a href="https://github.com/antoniacosta25/FirebaseApp/tree/semana6">Ver código →</a></article>
+    </div>
+    <p class="notice">Os links do Moodle podem exigir autenticação. Esta página organiza os acessos e não substitui a entrega ou a avaliação das atividades.</p>
+  </section>
+  <footer>Desenvolvimento Mobile I · UESB · 2026.2</footer>
+</main>
+</body>
+</html>
